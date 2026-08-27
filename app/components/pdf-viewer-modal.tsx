@@ -13,7 +13,7 @@ export function PdfViewerModal({
   isOpen,
   onClose,
   pdfUrl = '/assets/acri_capability_resolver_paper.pdf',
-  title = 'acri: A Client-Side Capability Resolver for Tool-Augmented Language Models (IEEE Format PDF)'
+  title = 'acri: A Client-Side Capability Resolver for Tool-Augmented Language Models (Research Paper PDF)'
 }: PdfModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

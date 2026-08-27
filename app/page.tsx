@@ -11,52 +11,52 @@ export default function ResearchHubPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'microkernels' | 'caching' | 'systems'>('all');
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--ink)' }}>
+    <div style={{ background: '#FFFFFF', minHeight: '100vh', color: '#1F1F1F' }}>
       <Header />
 
       {/* HUB HERO */}
-      <section style={{ padding: '80px 0 50px', borderBottom: '1px solid var(--hairline)', background: 'linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%)' }}>
+      <section style={{ padding: '60px 0 40px', borderBottom: '1px solid #E0E2E0', background: '#FAFAFA' }}>
         <div className="container">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: 'var(--r-pill)', background: 'var(--accent-glow)', border: '1px solid rgba(167,139,250,0.3)', color: 'var(--accent)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '20px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '9999px', background: '#E8F0FE', border: '1px solid #1A73E8', color: '#1A73E8', fontSize: '12px', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '16px' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1A73E8' }} />
             Open Source AI Research Collective
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.04em', color: 'var(--ink)', maxWidth: '900px', marginBottom: '20px' }}>
-            Advancing AI Systems, Capability Microkernels &amp; Deterministic Architecture.
+          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.035em', color: '#1F1F1F', maxWidth: '900px', marginBottom: '16px' }}>
+            Capability Microkernels &amp; Deterministic Architecture.
           </h1>
 
-          <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: 'var(--ink-secondary)', lineHeight: 1.6, maxWidth: '780px' }}>
+          <p style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)', color: '#444746', lineHeight: 1.6, maxWidth: '780px' }}>
             Empirical technical reports, mathematical proofs, and client-side systems designed for discipline, microsecond performance, and verified reproducibility.
           </p>
 
-          {/* Topic Filters */}
-          <div style={{ display: 'flex', gap: '10px', marginTop: '36px', flexWrap: 'wrap' }}>
+          {/* Clean Google Filter Chips */}
+          <div style={{ display: 'flex', gap: '10px', marginTop: '30px', flexWrap: 'wrap' }}>
             <button 
               type="button" 
               onClick={() => setActiveTab('all')}
-              className={`action-btn ${activeTab === 'all' ? 'btn-pdf' : 'btn-secondary'}`}
+              className={`google-filter-pill ${activeTab === 'all' ? 'active' : ''}`}
             >
               All Publications
             </button>
             <button 
               type="button" 
               onClick={() => setActiveTab('microkernels')}
-              className={`action-btn ${activeTab === 'microkernels' ? 'btn-pdf' : 'btn-secondary'}`}
+              className={`google-filter-pill ${activeTab === 'microkernels' ? 'active' : ''}`}
             >
               Capability Microkernels
             </button>
             <button 
               type="button" 
               onClick={() => setActiveTab('caching')}
-              className={`action-btn ${activeTab === 'caching' ? 'btn-pdf' : 'btn-secondary'}`}
+              className={`google-filter-pill ${activeTab === 'caching' ? 'active' : ''}`}
             >
               Prompt Caching Economics
             </button>
             <button 
               type="button" 
               onClick={() => setActiveTab('systems')}
-              className={`action-btn ${activeTab === 'systems' ? 'btn-pdf' : 'btn-secondary'}`}
+              className={`google-filter-pill ${activeTab === 'systems' ? 'active' : ''}`}
             >
               Agent Architectures
             </button>
@@ -65,35 +65,37 @@ export default function ResearchHubPage() {
       </section>
 
       {/* PAPERS INDEX */}
-      <section style={{ padding: '60px 0 100px' }}>
+      <section style={{ padding: '50px 0 80px' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#1F1F1F', letterSpacing: '-0.02em' }}>
               Featured Publications
             </h2>
-            <span style={{ fontSize: '13px', color: 'var(--ink-muted)' }}>Showing 1 of 1 peer-reviewed preprints</span>
+            <span style={{ fontSize: '13px', color: '#5F6368' }}>Showing 1 of 1 published papers</span>
           </div>
 
           {/* FEATURED FLAGSHIP PAPER CARD: ACRI */}
-          <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: 'var(--r-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-card)', transition: 'border-color 0.2s', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          <div style={{ background: '#FFFFFF', border: '1px solid #E0E2E0', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.05)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
             <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' }}>
-                  <span className="venue-pill">Featured Paper · IEEE Format</span>
-                  <span style={{ fontSize: '12px', color: 'var(--ink-dim)', fontFamily: 'var(--font-mono)' }}>August 2026</span>
+                  <span style={{ fontSize: '11.5px', fontWeight: 600, padding: '3px 10px', borderRadius: '9999px', background: '#E6F4EA', color: '#137333', border: '1px solid #CEEAD6' }}>
+                    Featured Paper · Preprint
+                  </span>
+                  <span style={{ fontSize: '12.5px', color: '#5F6368', fontFamily: 'var(--font-mono)' }}>August 2026</span>
                 </div>
 
-                <h3 style={{ fontSize: '24px', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.02em', color: 'var(--ink)', marginBottom: '14px' }}>
+                <h3 style={{ fontSize: '23px', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.02em', color: '#1F1F1F', marginBottom: '14px' }}>
                   <Link href="/acri" style={{ color: 'inherit', textDecoration: 'none' }}>
                     acri: A Client-Side Capability Resolver for Tool-Augmented Language Models
                   </Link>
                 </h3>
 
-                <p style={{ fontSize: '14.5px', color: 'var(--ink-secondary)', lineHeight: 1.65, marginBottom: '20px' }}>
+                <p style={{ fontSize: '14.5px', color: '#444746', lineHeight: 1.65, marginBottom: '20px' }}>
                   Resolving the exact top-k tools in 40 microseconds, eliminating prompt context bloat by 95%, and proving why dynamic per-turn tool rewriting is an economic anti-pattern under modern prompt caching regimes.
                 </p>
 
-                <div style={{ display: 'flex', gap: '24px', fontSize: '13px', color: 'var(--ink-muted)', marginBottom: '24px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '20px', fontSize: '13px', color: '#5F6368', marginBottom: '24px', flexWrap: 'wrap' }}>
                   <div><strong>Author:</strong> Piyush Sharma (@ScienHAC)</div>
                   <div><strong>Accuracy:</strong> 84% &rarr; 92% (+8.0%)</div>
                   <div><strong>Latency:</strong> 0.040 ms (40µs)</div>
@@ -101,14 +103,14 @@ export default function ResearchHubPage() {
               </div>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link href="/acri" className="action-btn btn-pdf">
+                <Link href="/acri" className="google-btn-primary">
                   Read Full Paper Article &rarr;
                 </Link>
 
                 <button 
                   type="button" 
                   onClick={() => setIsPdfOpen(true)}
-                  className="action-btn btn-secondary"
+                  className="google-btn-secondary"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -120,64 +122,29 @@ export default function ResearchHubPage() {
             </div>
 
             {/* PREVIEW VISUAL */}
-            <div style={{ background: 'var(--bg-sunken)', borderLeft: '1px solid var(--hairline)', padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ width: '100%', maxWidth: '380px', background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: '12px', padding: '20px', boxShadow: 'var(--shadow-card)' }}>
-                <div style={{ fontSize: '11px', color: 'var(--accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
+            <div style={{ background: '#F8F9FA', borderLeft: '1px solid #E0E2E0', padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ width: '100%', maxWidth: '360px', background: '#FFFFFF', border: '1px solid #E0E2E0', borderRadius: '12px', padding: '20px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                <div style={{ fontSize: '11px', color: '#1A73E8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '12px' }}>
                   Key Empirical Receipts
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '12.5px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--hairline)', paddingBottom: '6px' }}>
-                    <span style={{ color: 'var(--ink-muted)' }}>p50 Resolver Latency</span>
-                    <span style={{ color: 'var(--accent)', fontWeight: 700 }}>0.040 ms</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #F1F3F4', paddingBottom: '6px' }}>
+                    <span style={{ color: '#5F6368' }}>p50 Resolver Latency</span>
+                    <span style={{ color: '#1A73E8', fontWeight: 700 }}>0.040 ms</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--hairline)', paddingBottom: '6px' }}>
-                    <span style={{ color: 'var(--ink-muted)' }}>Recall@5 on 100 Tools</span>
-                    <span style={{ color: 'var(--emerald)', fontWeight: 700 }}>100%</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #F1F3F4', paddingBottom: '6px' }}>
+                    <span style={{ color: '#5F6368' }}>Recall@5 on 100 Tools</span>
+                    <span style={{ color: '#137333', fontWeight: 700 }}>100%</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--hairline)', paddingBottom: '6px' }}>
-                    <span style={{ color: 'var(--ink-muted)' }}>Gemini 2.5 Flash Accuracy</span>
-                    <span style={{ color: 'var(--emerald)', fontWeight: 700 }}>92% (vs 84%)</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #F1F3F4', paddingBottom: '6px' }}>
+                    <span style={{ color: '#5F6368' }}>Gemini 2.5 Flash Accuracy</span>
+                    <span style={{ color: '#137333', fontWeight: 700 }}>92% (vs 84%)</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--ink-muted)' }}>Prompt Token Reduction</span>
-                    <span style={{ color: 'var(--cyan)', fontWeight: 700 }}>95%</span>
+                    <span style={{ color: '#5F6368' }}>Prompt Token Reduction</span>
+                    <span style={{ color: '#1A73E8', fontWeight: 700 }}>95%</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* FORTHCOMING RESEARCH PIPELINE */}
-          <div style={{ marginTop: '60px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--ink)', marginBottom: '20px', letterSpacing: '-0.02em' }}>
-              Forthcoming Preprints &amp; Technical Reports
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
-              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <span style={{ fontSize: '11px', color: 'var(--amber)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>In Development</span>
-                  <span style={{ fontSize: '11px', color: 'var(--ink-dim)', fontFamily: 'var(--font-mono)' }}>Q4 2026</span>
-                </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>
-                  Atelier: Deterministic Runtime Isolation for Craftsman AI Agents
-                </h4>
-                <p style={{ fontSize: '13.5px', color: 'var(--ink-secondary)', lineHeight: 1.55 }}>
-                  A zero-dependency TypeScript/Python framework for stateful workflows, sandboxed execution, and multi-agent coordination.
-                </p>
-              </div>
-
-              <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <span style={{ fontSize: '11px', color: 'var(--amber)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Working Draft</span>
-                  <span style={{ fontSize: '11px', color: 'var(--ink-dim)', fontFamily: 'var(--font-mono)' }}>Q4 2026</span>
-                </div>
-                <h4 style={{ fontSize: '17px', fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>
-                  Pre-Generation Intent Gating vs. Cascade Escalation in LLM Ensembles
-                </h4>
-                <p style={{ fontSize: '13.5px', color: 'var(--ink-secondary)', lineHeight: 1.55 }}>
-                  Empirical analysis of classification vs model cascade handoffs across 1,000+ real-world reasoning tasks.
-                </p>
               </div>
             </div>
           </div>
