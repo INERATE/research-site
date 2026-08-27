@@ -2,56 +2,54 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: '1px solid var(--hairline)', background: 'var(--bg-sunken)', padding: '60px 0 40px', color: 'var(--ink-muted)' }}>
+    <footer className="google-footer">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px' }}>
+        <div className="footer-cols">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--ink)', fontWeight: 700, fontSize: '15px', letterSpacing: '0.06em' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.75" strokeDasharray="2 3" />
-                <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.5" />
-                <rect x="10" y="10" width="4" height="4" rx="1" fill="#25BE74" />
-              </svg>
-              INERATE RESEARCH
-            </div>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, marginTop: '12px', color: 'var(--ink-muted)' }}>
-              Advancing rigorous, client-side agent microkernels, capability addressing, and deterministic AI systems.
+            <div className="footer-col-title">INERATE Research</div>
+            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5F6368', marginBottom: '14px' }}>
+              Advancing deterministic AI agent architectures, capability addressing, and high-performance system runtimes.
             </p>
           </div>
 
           <div>
-            <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink)' }}>Publications</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px', fontSize: '13px' }}>
-              <Link href="/acri" style={{ color: 'inherit', textDecoration: 'none' }}>acri Capability Microkernel (2026)</Link>
-              <span style={{ color: 'var(--ink-dim)' }}>Atelier Runtime Framework (Coming Soon)</span>
-              <span style={{ color: 'var(--ink-dim)' }}>Pre-Generation Intent Gating (Working Draft)</span>
+            <div className="footer-col-title">Research Topics</div>
+            <div className="footer-col-links">
+              <Link href="/acri">Capability Microkernels</Link>
+              <Link href="/acri#caching-law">Prompt Caching Economics</Link>
+              <Link href="/#forthcoming">Stateful Agent Workflows</Link>
+              <Link href="/#forthcoming">Compiler &amp; Memory Compaction</Link>
             </div>
           </div>
 
           <div>
-            <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink)' }}>Ecosystem</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px', fontSize: '13px' }}>
-              <a href="https://forge.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Inerate Forge Hub</a>
-              <a href="https://docs.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Documentation Hub</a>
-              <a href="https://tools.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Developer Tools Suite</a>
+            <div className="footer-col-title">Ecosystem</div>
+            <div className="footer-col-links">
+              <a href="https://forge.inerate.com" target="_blank" rel="noopener noreferrer">Inerate Forge Hub</a>
+              <a href="https://docs.inerate.com" target="_blank" rel="noopener noreferrer">Documentation Hub</a>
+              <a href="https://tools.inerate.com" target="_blank" rel="noopener noreferrer">Developer Tools Suite</a>
             </div>
           </div>
 
           <div>
-            <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink)' }}>Open Source</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px', fontSize: '13px' }}>
-              <a href="https://github.com/INERATE/acri" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>GitHub: INERATE/acri</a>
-              <a href="https://pypi.org/project/pyacri/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>PyPI: pyacri v0.4.3</a>
-              <a href="https://github.com/ScienHAC" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Piyush Sharma (@ScienHAC)</a>
+            <div className="footer-col-title">Publications &amp; Code</div>
+            <div className="footer-col-links">
+              <Link href="/acri">acri Technical Report (2026)</Link>
+              <a href="https://github.com/INERATE/acri" target="_blank" rel="noopener noreferrer">GitHub: INERATE/acri</a>
+              <a href="https://pypi.org/project/pyacri/" target="_blank" rel="noopener noreferrer">PyPI: pyacri v0.5.0</a>
             </div>
           </div>
         </div>
 
-        <div style={{ borderTop: '1px solid var(--hairline)', paddingTop: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12.5px' }}>
-          <div>&copy; 2026 INERATE Group · Open Source Research & Engineering (MIT License)</div>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a href="https://github.com/INERATE" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>GitHub</a>
-            <a href="https://forge.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Forge</a>
+        <div className="footer-bottom">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontWeight: 600, color: '#1F1F1F' }}>INERATE</span>
+            <span>&copy; 2026 INERATE Group · Open Source Research (MIT License)</span>
+          </div>
+          <div style={{ display: 'flex', gap: '20px' }}>
+            <a href="https://github.com/INERATE" target="_blank" rel="noopener noreferrer" style={{ color: '#5F6368', textDecoration: 'none' }}>GitHub</a>
+            <a href="https://forge.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: '#5F6368', textDecoration: 'none' }}>Forge</a>
+            <a href="https://docs.inerate.com" target="_blank" rel="noopener noreferrer" style={{ color: '#5F6368', textDecoration: 'none' }}>Docs</a>
           </div>
         </div>
       </div>

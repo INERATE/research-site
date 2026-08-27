@@ -10,25 +10,14 @@ import { BibtexModal } from '@/app/components/bibtex-modal';
 export default function AcriPaperPage() {
   const [isPdfOpen, setIsPdfOpen] = useState(false);
   const [isBibtexOpen, setIsBibtexOpen] = useState(false);
-  const [activeId, setActiveId] = useState('abstract');
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 2500);
-  };
+  const [activeId, setActiveId] = useState('how-it-works');
 
   useEffect(() => {
     const sections = [
-      'abstract',
-      'introduction',
-      'claims-matrix',
-      'related-work',
-      'architecture',
+      'how-it-works',
       'caching-law',
-      'evaluation',
-      'limitations',
-      'conclusion',
+      'experiments-results',
+      'looking-ahead',
       'reproduction'
     ];
 
@@ -50,477 +39,395 @@ export default function AcriPaperPage() {
   }, []);
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--ink)' }}>
+    <div style={{ background: '#FFFFFF', minHeight: '100vh', color: '#1F1F1F' }}>
       <Header />
 
-      {/* EDITORIAL HERO SECTION */}
-      <section className="paper-hero">
-        <div className="container">
-          <div className="venue-meta">
-            <span className="venue-pill">IEEE Technical Report · Open Source Research</span>
-            <span className="date-text">Published August 27, 2026 · 12 min read</span>
-          </div>
-
-          <h1 className="paper-title">
-            acri: A Client-Side Capability Resolver for Tool-Augmented Language Models
-          </h1>
-
-          <p className="paper-subhead">
-            Resolving the exact top-k tools in 40 microseconds, reducing prompt bloat by 95%, and proving the Prompt Caching Inversion Theorem for AI agents.
-          </p>
-
-          {/* Author & Action Bar */}
-          <div className="author-bar">
-            <div className="author-chip">
-              <div className="author-avatar">PS</div>
-              <div>
-                <div className="author-name">Piyush Sharma</div>
-                <div className="author-affiliation">INERATE Engineering Collective · @ScienHAC</div>
-              </div>
-            </div>
-
-            <div className="quick-actions">
-              <button 
-                type="button" 
-                onClick={() => setIsPdfOpen(true)} 
-                className="action-btn btn-pdf"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                Read Paper PDF
-              </button>
-
-              <button 
-                type="button" 
-                onClick={() => setIsBibtexOpen(true)} 
-                className="action-btn btn-secondary"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                </svg>
-                Cite (BibTeX)
-              </button>
-
-              <a 
-                href="https://github.com/INERATE/acri" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="action-btn btn-secondary"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.94c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.78 1.05.78 2.13v3.16c0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
-                </svg>
-                GitHub ⭐
-              </a>
-
-              <a 
-                href="https://forge.inerate.com/acri" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="action-btn btn-secondary"
-              >
-                Interactive Studio ⚡
-              </a>
-            </div>
-          </div>
+      <main className="container">
+        {/* BREADCRUMBS */}
+        <div className="breadcrumbs">
+          <Link href="/">Home</Link>
+          <span>&gt;</span>
+          <Link href="/">Publications</Link>
+          <span>&gt;</span>
+          <span>Capability Microkernels</span>
         </div>
-      </section>
 
-      {/* 2-COLUMN ARTICLE & STICKY RESEARCH RAIL */}
-      <div className="container">
-        <div className="paper-layout">
-          {/* ARTICLE BODY */}
-          <article className="article-body">
-            {/* ABSTRACT */}
-            <div className="abstract-box" id="abstract">
-              <strong>Abstract</strong>
-              As the number of tools exposed to a language model grows past a small threshold, tool-selection accuracy degrades—Anthropic’s own documentation places the performance cliff at 30–50 tools. Anthropic and OpenAI ship proprietary server-side tool search to address this; open providers (Google Gemini, Ollama, vLLM, and locally-hosted models) have no native equivalent. We present <strong>acri</strong>, a client-side, provider-agnostic capability resolver: given a query and a registered tool corpus, it isolates the top-k relevant tools using an in-memory BM25 lexical inverted index with zero model training and zero external dependencies. On a 50-query, 100-tool benchmark, acri improves live tool selection accuracy on <code>gemini-2.5-flash</code> from <strong>84% to 92%</strong> (top-5 shown), with zero resolver misses. We further prove that a naive &ldquo;send fewer tokens&rdquo; assumption is economically wrong once provider prompt caching is accounted for: rewriting tool prefixes across turns invalidates cache discounts unless token reduction exceeds roughly tenfold.
-            </div>
+        {/* HERO SECTION */}
+        <section className="article-hero">
+          <div className="hero-grid">
+            <div>
+              <h1 className="article-title">
+                acri: Redefining AI capability resolution with 40µs microkernels
+              </h1>
 
-            {/* SECTION 1: INTRODUCTION */}
-            <section id="introduction">
-              <h2>1. Introduction</h2>
-              <p>
-                Tool-augmented language models select one function from a registered catalog on each turn. As that catalog expands, the model’s task—reading N schemas and picking the exact right one—degrades in accuracy for a well-documented reason: schema tokens compete for the same attention budget as conversation context, and confusability between similarly-named tools rises with N.
-              </p>
-              <p>
-                Anthropic’s own tool-use documentation names <strong>30–50 tools</strong> as the point past which degradation becomes visible in practice, shipping server-side Tool Search as their mitigation. OpenAI ships a similar assistant catalog.
-              </p>
-              <p>
-                Gemini does not. Ollama does not. vLLM does not. A locally-hosted 8B model does not. Developers building against these endpoints do not get this mitigation for free, and re-implementing server-side retrieval per provider is an unreasonable burden.
-              </p>
-              <p>
-                <strong>acri</strong> is that layer, implemented once, client-side: <code>pip install pyacri</code>, <code>import acri</code>. It sits between application code and whichever provider SDK is in use, deciding per-task which k of the registered tools the model actually sees in 40 microseconds.
-              </p>
-            </section>
-
-            {/* CLAIMS MATRIX */}
-            <section id="claims-matrix">
-              <h2>1.1 Empirical Claims Audit</h2>
-              <p>
-                Early drafts of AI framework projects often accumulate unsupportable claims. Table 1 audits every claim made in this work by empirical defensibility. We explicitly state what we refuse to claim.
-              </p>
-
-              <div className="data-table-wrap">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th style={{ width: '35%' }}>Hypothesized Claim</th>
-                      <th>Empirical Audit Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Improves Tool-Selection Accuracy</strong></td>
-                      <td><span style={{ color: 'var(--emerald)', fontWeight: 600 }}>Measured.</span> Naive 84% &rarr; acri 92% on live <code>gemini-2.5-flash</code> calls (&sect;4.3).</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Frees Context-Window Capacity</strong></td>
-                      <td><span style={{ color: 'var(--accent)', fontWeight: 600 }}>Verified.</span> 95% reduction in offered schema tokens (5 tools vs 100 tools in active context).</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Provider-Agnostic Operation</strong></td>
-                      <td><span style={{ color: 'var(--ink)', fontWeight: 600 }}>Architectural Fact.</span> Works client-side across Gemini, Ollama, vLLM, OpenAI endpoints.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Lowers Turn-by-Turn Cost</strong></td>
-                      <td><span style={{ color: 'var(--amber)', fontWeight: 600 }}>Conditional / False.</span> Rewriting tool prefixes every turn forfeits cache discounts (&sect;3.2).</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Faster End-to-End Latency</strong></td>
-                      <td><span style={{ color: 'var(--ink-muted)' }}>Indirect.</span> Resolver latency (0.040ms) is negligible; savings come from fewer retry turns.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Eliminates All Hallucinations</strong></td>
-                      <td><span style={{ color: '#EF4444', fontWeight: 600 }}>Not Claimable.</span> Top-k pruning minimizes distractors but cannot mathematically guarantee compliance.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            {/* SECTION 2: RELATED WORK */}
-            <section id="related-work">
-              <h2>2. Related Work</h2>
-              <p>
-                <strong>Server-side tool search (Anthropic, OpenAI):</strong> Solves the identical problem for closed provider clouds. acri targets the complement—every provider and self-hosted model that does not ship native search.
-              </p>
-              <p>
-                <strong>Model Context Protocol (MCP) Filtering Proposals:</strong> SEP-1300, SEP-1821, and SEP-1881 proposed static group tags. While static tagging allows operators to categorize tools ahead of time, acri performs <em>query-aware runtime retrieval</em>, where relevance dynamically adapts per user intent.
-              </p>
-              <p>
-                <strong>Pre-Generation Routing vs Cascades:</strong> RouteLLM pioneered model tier selection. Recent findings by Nguyen &amp; Diao (2026) in <em>&ldquo;Is Escalation Worth It?&rdquo;</em> prove that lightweight pre-generation routing strictly outperforms cascade fallbacks because cascades always pay the cheap model&rsquo;s latency and cost before escalating.
-              </p>
-            </section>
-
-            {/* SECTION 3: SYSTEM ARCHITECTURE */}
-            <section id="architecture">
-              <h2>3. System Architecture</h2>
-              <p>
-                acri decomposes into three foundational components: <strong>corpus</strong> (in-memory index over MCP servers, OpenAPI specs, and Python callables), <strong>compass</strong> (zero-copy BM25 inverted lexical resolver with query-side synonym expansion), and <strong>port</strong> (unified provider adapters for Gemini, OpenAI, and Ollama). Decisions are logged to an immutable local ledger (<code>.acri/ledger.jsonl</code>).
-              </p>
-
-              {/* FIGURE 1: ARCHITECTURE FLOW */}
-              <div className="figure-container">
-                <div className="figure-header">
-                  <span className="figure-badge">Figure 1: Capability Resolution Pipeline</span>
-                  <span>40µs IN-MEMORY FLOW</span>
+              <div className="article-meta">
+                <div className="date">August 27, 2026</div>
+                <div className="authors">
+                  Piyush Sharma, Research Scientist, <a href="https://github.com/INERATE" target="_blank" rel="noopener noreferrer">INERATE Research</a>
                 </div>
-                <div className="figure-body">
-                  <svg viewBox="0 0 740 200" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
-                    {/* Node 1: Corpus */}
-                    <rect x="10" y="55" width="150" height="90" rx="8" fill="var(--bg-surface)" stroke="var(--accent)" strokeWidth="1.5" />
-                    <text x="85" y="85" textAnchor="middle" fontSize="13" fontWeight="700" fill="var(--accent)">corpus.index()</text>
-                    <text x="85" y="107" textAnchor="middle" fontSize="11" fill="var(--ink-muted)">100+ MCP Tools</text>
-                    <text x="85" y="125" textAnchor="middle" fontSize="10.5" fill="var(--ink-dim)">Indexed in RAM</text>
+              </div>
 
-                    {/* Arrow 1 */}
-                    <line x1="160" y1="100" x2="195" y2="100" stroke="var(--ink-dim)" strokeWidth="2" strokeDasharray="3 3" />
-
-                    {/* Node 2: Compass */}
-                    <rect x="200" y="55" width="165" height="90" rx="8" fill="var(--bg-surface)" stroke="var(--cyan)" strokeWidth="1.5" />
-                    <text x="282" y="85" textAnchor="middle" fontSize="13" fontWeight="700" fill="var(--cyan)">compass.resolve()</text>
-                    <text x="282" y="107" textAnchor="middle" fontSize="11" fill="var(--ink-muted)">In-Memory BM25</text>
-                    <text x="282" y="125" textAnchor="middle" fontSize="10.5" fill="var(--cyan)">0.038 ms Latency</text>
-
-                    {/* Arrow 2 */}
-                    <line x1="365" y1="100" x2="400" y2="100" stroke="var(--ink-dim)" strokeWidth="2" strokeDasharray="3 3" />
-
-                    {/* Node 3: Top-5 */}
-                    <rect x="405" y="55" width="150" height="90" rx="8" fill="var(--bg-surface)" stroke="var(--emerald)" strokeWidth="1.5" />
-                    <text x="480" y="85" textAnchor="middle" fontSize="13" fontWeight="700" fill="var(--emerald)">Top-5 Candidates</text>
-                    <text x="480" y="107" textAnchor="middle" fontSize="11" fill="var(--ink-muted)">95% Fewer Tokens</text>
-                    <text x="480" y="125" textAnchor="middle" fontSize="10.5" fill="var(--emerald)">100% Recall@5</text>
-
-                    {/* Arrow 3 */}
-                    <line x1="555" y1="100" x2="590" y2="100" stroke="var(--ink-dim)" strokeWidth="2" strokeDasharray="3 3" />
-
-                    {/* Node 4: Provider */}
-                    <rect x="595" y="55" width="135" height="90" rx="8" fill="var(--bg-surface)" stroke="var(--ink-secondary)" strokeWidth="1.5" />
-                    <text x="662" y="85" textAnchor="middle" fontSize="13" fontWeight="700" fill="var(--ink)">port.gemini</text>
-                    <text x="662" y="107" textAnchor="middle" fontSize="11" fill="var(--ink-muted)">1 Direct LLM Call</text>
-                    <text x="662" y="125" textAnchor="middle" fontSize="10.5" fill="var(--ink-dim)">Zero Gateway Lag</text>
+              {/* Action Buttons */}
+              <div className="action-buttons-row">
+                <button 
+                  type="button" 
+                  onClick={() => setIsPdfOpen(true)}
+                  className="google-btn-primary"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
                   </svg>
-                </div>
-                <div className="figure-caption">
-                  <b>Figure 1: Client-Side Capability Resolution Pipeline.</b> The registered catalog is tokenized once into RAM. On each turn, <code>compass.resolve()</code> filters the catalog to top-5 candidates in 38 microseconds before provider invocation.
-                </div>
-              </div>
-            </section>
+                  Read Paper (PDF)
+                </button>
 
-            {/* SECTION 3.2: PROMPT CACHING LAW */}
-            <section id="caching-law">
-              <h2>3.2 The Prompt Caching Inversion Theorem</h2>
-              <p>
-                A core theoretical insight of this paper is proving why dynamic, per-turn tool re-resolution is an economic anti-pattern under modern provider pricing.
-              </p>
-              <p>
-                Major LLM providers grant a ~90% discount on prompt tokens matching a cached prefix. Tool schemas sit at the beginning of the prompt. Rewriting the tool block on every turn invalidates the KV-cache prefix, forcing the caller to pay full price for a slightly smaller prompt.
-              </p>
-
-              {/* EQUATION 1 CARD */}
-              <div className="equation-card">
-                <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ink-dim)', fontWeight: 700 }}>
-                  Equation 1: The Prompt Caching Inversion Inequality
-                </div>
-                <div className="equation-math">
-                  r &middot; C &middot; p &nbsp;&lt;&nbsp; C &middot; (p / 10) &nbsp;&nbsp;&iff;&nbsp;&nbsp; r &lt; 1/10
-                </div>
-                <p className="equation-desc">
-                  Where <code>C</code> is full tool schema tokens, <code>p</code> is uncached price, and <code>r</code> is the reduction ratio.
-                </p>
-              </div>
-
-              <p>
-                <strong>Theorem 1 (The Resolve-Once Law):</strong> Pruning a tool schema prefix by less than 10-fold while forfeiting cache discounts constitutes a <em>net economic regression</em>. Therefore, acri enforces a <strong>resolve once per task</strong> policy, writing the tool schema prefix once and maintaining it across conversational turns. Mid-task tool discovery is handled via the append-only <code>find_more_tools</code> escape hatch.
-              </p>
-            </section>
-
-            {/* SECTION 4: EMPIRICAL EVALUATION */}
-            <section id="evaluation">
-              <h2>4. Empirical Evaluation &amp; Experimental Receipts</h2>
-              <p>
-                All experimental figures originate from automated harness scripts in the <code>assay/</code> test suite, evaluated on a synthetic corpus of 100 enterprise tools spanning 20 distinct domains with high cross-domain confusability.
-              </p>
-
-              {/* FIGURE 2: RECALL & SCALE BAR CHART */}
-              <div className="figure-container">
-                <div className="figure-header">
-                  <span className="figure-badge">Figure 2: Empirical Recall@k &amp; Scale Stress</span>
-                  <span>100 VS 504 TOOLS</span>
-                </div>
-                <div className="figure-body">
-                  <svg viewBox="0 0 740 220" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
-                    {/* Y Axis Grid */}
-                    <line x1="120" y1="30" x2="700" y2="30" stroke="var(--hairline)" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="120" y1="75" x2="700" y2="75" stroke="var(--hairline)" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="120" y1="120" x2="700" y2="120" stroke="var(--hairline)" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="120" y1="165" x2="700" y2="165" stroke="var(--hairline)" strokeWidth="1" strokeDasharray="3 3" />
-
-                    {/* Labels */}
-                    <text x="110" y="34" textAnchor="end" fontSize="11" fill="var(--ink-dim)">100%</text>
-                    <text x="110" y="79" textAnchor="end" fontSize="11" fill="var(--ink-dim)">90%</text>
-                    <text x="110" y="124" textAnchor="end" fontSize="11" fill="var(--ink-dim)">80%</text>
-                    <text x="110" y="169" textAnchor="end" fontSize="11" fill="var(--ink-dim)">70%</text>
-
-                    {/* Bar Group 1: k=1 */}
-                    <rect x="160" y="69" width="36" height="96" rx="4" fill="var(--accent)" />
-                    <rect x="202" y="93" width="36" height="72" rx="4" fill="rgba(167,139,250,0.4)" />
-                    <text x="199" y="190" textAnchor="middle" fontSize="12" fontWeight="600" fill="var(--ink)">k = 1</text>
-
-                    {/* Bar Group 2: k=3 */}
-                    <rect x="290" y="45" width="36" height="120" rx="4" fill="var(--accent)" />
-                    <rect x="332" y="57" width="36" height="108" rx="4" fill="rgba(167,139,250,0.4)" />
-                    <text x="329" y="190" textAnchor="middle" fontSize="12" fontWeight="600" fill="var(--ink)">k = 3</text>
-
-                    {/* Bar Group 3: k=5 */}
-                    <rect x="420" y="30" width="36" height="135" rx="4" fill="var(--emerald)" />
-                    <rect x="462" y="42" width="36" height="123" rx="4" fill="rgba(37,190,116,0.4)" />
-                    <text x="459" y="190" textAnchor="middle" fontSize="12" fontWeight="700" fill="var(--emerald)">k = 5 (Standard)</text>
-
-                    {/* Bar Group 4: k=10 */}
-                    <rect x="550" y="30" width="36" height="135" rx="4" fill="var(--accent)" />
-                    <rect x="592" y="33" width="36" height="132" rx="4" fill="rgba(167,139,250,0.4)" />
-                    <text x="589" y="190" textAnchor="middle" fontSize="12" fontWeight="600" fill="var(--ink)">k = 10</text>
-                  </svg>
-                </div>
-                <div className="figure-caption">
-                  <b>Figure 2: Recall@k Accuracy across 100 Tools vs 504 Tools.</b> Solid bars show 100-tool corpus (100% at k=5); translucent bars show 504-tool scale stress test (92% at k=5). Latency scales sub-linearly to 0.179 ms at 504 tools.
-                </div>
-              </div>
-
-              {/* FIGURE 3: LIVE ACCURACY BAR */}
-              <div className="figure-container">
-                <div className="figure-header">
-                  <span className="figure-badge">Figure 3: Live LLM Tool Selection Accuracy</span>
-                  <span>GEMINI 2.5 FLASH (n=50)</span>
-                </div>
-                <div className="figure-body" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '32px 20px', flexWrap: 'wrap', gap: '20px' }}>
-                  <div style={{ textAlign: 'center', padding: '20px 30px', background: 'var(--bg-surface)', borderRadius: '12px', border: '1px solid var(--hairline)', minWidth: '220px' }}>
-                    <div style={{ fontSize: '13px', color: 'var(--ink-muted)', marginBottom: '6px' }}>Naive (100 Tools in Prompt)</div>
-                    <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--ink-dim)' }}>84%</div>
-                    <div style={{ fontSize: '11.5px', color: '#EF4444', marginTop: '4px' }}>Attention degradation &amp; confusion</div>
-                  </div>
-
-                  <div style={{ fontSize: '2rem', color: 'var(--accent)', fontWeight: 700 }}>&rarr;</div>
-
-                  <div style={{ textAlign: 'center', padding: '20px 30px', background: 'var(--bg-surface)', borderRadius: '12px', border: '1px solid rgba(37,190,116,0.3)', minWidth: '220px', boxShadow: '0 8px 24px rgba(37,190,116,0.1)' }}>
-                    <div style={{ fontSize: '13px', color: 'var(--emerald)', fontWeight: 600, marginBottom: '6px' }}>acri (Top-5 Tools Offered)</div>
-                    <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--emerald)' }}>92%</div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--emerald)', marginTop: '4px' }}>+8.0% gain (resolver_miss = 0)</div>
-                  </div>
-                </div>
-                <div className="figure-caption">
-                  <b>Figure 3: Live Model Tool Selection Accuracy.</b> Measured on 50 natural language queries on live <code>gemini-2.5-flash</code>. Diagnosis with <code>assay/diagnose.py</code> confirms zero resolver misses.
-                </div>
-              </div>
-            </section>
-
-            {/* SECTION 5: LIMITATIONS */}
-            <section id="limitations">
-              <h2>5. Limitations &amp; Unresolved Gaps</h2>
-              <p>
-                Stated as explicit gaps to close before peer review at a flagship venue:
-              </p>
-              <ol style={{ paddingLeft: '24px', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '15px', color: 'var(--ink-secondary)' }}>
-                <li><strong>Sample Size:</strong> 50–52 gold queries is small for a headline claim. A ~2-point noise floor exists; bootstrap confidence intervals are uncalculated.</li>
-                <li><strong>Single Model:</strong> All accuracy numbers are <code>gemini-2.5-flash</code> only; cross-family generalization (Claude 3.7, GPT-4o, LLaMA-3) is unmeasured.</li>
-                <li><strong>No Dense Embedding Baseline:</strong> BM25 vs dense embeddings on tool descriptions is an open question requiring comparative assay runs.</li>
-                <li><strong>Synthetic Corpus:</strong> The catalog was generated, not sourced from in-production enterprise MCP deployments.</li>
-                <li><strong>Re-Resolution Triggers:</strong> Policies for autonomously triggering <code>find_more_tools</code> without extra model inference remain unformalized.</li>
-              </ol>
-            </section>
-
-            {/* SECTION 6: CONCLUSION */}
-            <section id="conclusion">
-              <h2>6. Conclusion</h2>
-              <p>
-                We have presented <strong>acri</strong>, an open-source capability resolver for language models without native tool search. By resolving capability sets in 40 microseconds and proving the Prompt Caching Inversion Law, acri eliminates context bloat, boosts model selection accuracy by 8%, and provides cross-language parity across Python, Rust, and TypeScript.
-              </p>
-            </section>
-
-            {/* REPRODUCTION CODE */}
-            <section id="reproduction" style={{ marginTop: '40px' }}>
-              <h2>Reproduction &amp; Code</h2>
-              <p>
-                Reproduce all empirical receipts locally with the <code>assay/</code> test suite:
-              </p>
-
-              <div style={{ background: 'var(--bg-sunken)', border: '1px solid var(--hairline)', borderRadius: '12px', padding: '20px', fontFamily: 'var(--font-mono)', fontSize: '13px', lineHeight: 1.6 }}>
-                <div style={{ color: 'var(--ink-dim)' }}># 1. Install pyacri with dev harness:</div>
-                <div style={{ color: 'var(--accent)' }}>$ pip install -e &quot;.[dev]&quot;</div>
-                <br />
-                <div style={{ color: 'var(--ink-dim)' }}># 2. Run Recall@k and Scale benchmarks:</div>
-                <div style={{ color: 'var(--ink)' }}>$ python -m assay.recall <span style={{ color: 'var(--ink-dim)' }}># &sect;4.1</span></div>
-                <div style={{ color: 'var(--ink)' }}>$ python -m assay.scale <span style={{ color: 'var(--ink-dim)' }}># &sect;4.2 (504-tool test)</span></div>
-                <br />
-                <div style={{ color: 'var(--ink-dim)' }}># 3. Run Live LLM Accuracy Evaluation:</div>
-                <div style={{ color: 'var(--ink)' }}>$ python -m assay.accuracy <span style={{ color: 'var(--ink-dim)' }}># &sect;4.3 (requires GEMINI_API_KEY)</span></div>
-                <div style={{ color: 'var(--ink)' }}>$ python -m assay.diagnose <span style={{ color: 'var(--ink-dim)' }}># Error decomposition</span></div>
-              </div>
-            </section>
-
-            {/* OTHER RESEARCH CARDS */}
-            <div style={{ marginTop: '80px', paddingTop: '40px', borderTop: '1px solid var(--hairline)' }}>
-              <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '16px' }}>
-                Other Research from INERATE
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-                <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: '12px', padding: '20px' }}>
-                  <div style={{ fontSize: '11px', color: 'var(--emerald)', fontWeight: 600, textTransform: 'uppercase' }}>Framework Architecture</div>
-                  <h4 style={{ fontSize: '16px', fontWeight: 700, margin: '8px 0 6px', color: 'var(--ink)' }}>Atelier: Craftsman AI Agent Framework</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-                    Zero-bloat deterministic agent framework designed for production reliability.
-                  </p>
-                  <a href="https://forge.inerate.com/atelier" target="_blank" rel="noopener noreferrer" style={{ fontSize: '12.5px', color: 'var(--accent)', fontWeight: 600, display: 'inline-block', marginTop: '10px' }}>
-                    View Atelier &rarr;
-                  </a>
-                </div>
-
-                <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--hairline)', borderRadius: '12px', padding: '20px' }}>
-                  <div style={{ fontSize: '11px', color: 'var(--cyan)', fontWeight: 600, textTransform: 'uppercase' }}>Observability</div>
-                  <h4 style={{ fontSize: '16px', fontWeight: 700, margin: '8px 0 6px', color: 'var(--ink)' }}>acri studio: Real-Time Trace Mesh</h4>
-                  <p style={{ fontSize: '13px', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-                    Local visualizer on port 8099 streaming capability resolution traces with zero telemetry leaks.
-                  </p>
-                  <a href="https://forge.inerate.com/acri" target="_blank" rel="noopener noreferrer" style={{ fontSize: '12.5px', color: 'var(--cyan)', fontWeight: 600, display: 'inline-block', marginTop: '10px' }}>
-                    Launch Studio &rarr;
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          {/* STICKY RESEARCH RAIL (DESKTOP RIGHT) */}
-          <aside className="sticky-rail">
-            {/* Table of Contents */}
-            <div className="rail-card">
-              <div className="rail-title">Contents</div>
-              <ul className="toc-list">
-                <li><a href="#abstract" className={`toc-link ${activeId === 'abstract' ? 'active' : ''}`}>Abstract</a></li>
-                <li><a href="#introduction" className={`toc-link ${activeId === 'introduction' ? 'active' : ''}`}>1. Introduction</a></li>
-                <li><a href="#claims-matrix" className={`toc-link ${activeId === 'claims-matrix' ? 'active' : ''}`}>1.1 Claims Matrix</a></li>
-                <li><a href="#related-work" className={`toc-link ${activeId === 'related-work' ? 'active' : ''}`}>2. Related Work</a></li>
-                <li><a href="#architecture" className={`toc-link ${activeId === 'architecture' ? 'active' : ''}`}>3. Architecture</a></li>
-                <li><a href="#caching-law" className={`toc-link ${activeId === 'caching-law' ? 'active' : ''}`}>3.2 Caching Theorem</a></li>
-                <li><a href="#evaluation" className={`toc-link ${activeId === 'evaluation' ? 'active' : ''}`}>4. Empirical Evaluation</a></li>
-                <li><a href="#limitations" className={`toc-link ${activeId === 'limitations' ? 'active' : ''}`}>5. Limitations</a></li>
-                <li><a href="#conclusion" className={`toc-link ${activeId === 'conclusion' ? 'active' : ''}`}>6. Conclusion</a></li>
-                <li><a href="#reproduction" className={`toc-link ${activeId === 'reproduction' ? 'active' : ''}`}>Reproduction</a></li>
-              </ul>
-            </div>
-
-            {/* PDF Reader Trigger Card */}
-            <div className="rail-card" style={{ background: 'linear-gradient(180deg, var(--bg-surface) 0%, rgba(167, 139, 250, 0.05) 100%)', border: '1px solid rgba(167,139,250,0.2)' }}>
-              <div className="rail-title" style={{ color: 'var(--accent)' }}>Full IEEE Paper</div>
-              <p style={{ fontSize: '12.5px', color: 'var(--ink-secondary)', marginBottom: '14px', lineHeight: 1.5 }}>
-                Read the compiled 4-page IEEE conference format PDF with native TikZ vector graphics.
-              </p>
-              <button 
-                type="button" 
-                onClick={() => setIsPdfOpen(true)} 
-                className="action-btn btn-pdf"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                Read in PDF Viewer
-              </button>
-            </div>
-
-            {/* BibTeX Card */}
-            <div className="rail-card">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <div className="rail-title" style={{ margin: 0 }}>Cite</div>
                 <button 
                   type="button" 
                   onClick={() => setIsBibtexOpen(true)}
-                  style={{ background: 'none', border: 'none', color: 'var(--accent)', fontSize: '11px', cursor: 'pointer', fontWeight: 600 }}
+                  className="google-btn-secondary"
                 >
-                  Expand
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  </svg>
+                  Cite (BibTeX)
                 </button>
+
+                <a 
+                  href="https://github.com/INERATE/acri" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="google-btn-secondary"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.94c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.78 1.05.78 2.13v3.16c0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+                  </svg>
+                  GitHub
+                </a>
+
+                <a 
+                  href="https://forge.inerate.com/acri" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="google-btn-secondary"
+                >
+                  Interactive Demo ⚡
+                </a>
               </div>
-              <div className="bibtex-preview" style={{ maxHeight: '110px' }}>
-                {`@article{sharma2026acri,
-  title={acri: A Client-Side Capability Resolver...},
-  author={Sharma, Piyush},
-  year={2026}
-}`}
+            </div>
+
+            {/* HERO GRAPHIC CARD */}
+            <div className="hero-graphic-card">
+              <div className="hero-graphic-grid">
+                <div className="cell" style={{ background: '#34A853' }} />
+                <div className="cell" style={{ background: '#FBBC04' }} />
+                <div className="cell" style={{ background: '#1A73E8' }} />
+                <div className="cell" style={{ background: '#EA4335' }} />
+                <div className="cell" style={{ background: '#7C3AED' }} />
+                <div className="cell" style={{ background: '#25BE74' }} />
+                <div className="cell" style={{ background: '#1A73E8' }} />
+                <div className="cell" style={{ background: '#34A853' }} />
+                <div className="cell" style={{ background: '#FBBC04' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* LEAD STATEMENT */}
+        <div className="lead-statement">
+          We introduce a client-side capability resolver that enables massive 95% prompt token reduction and improves live model tool selection accuracy from 84% to 92% on Gemini 2.5 Flash.
+        </div>
+
+        {/* 2-COLUMN CONTENT & QUICK LINKS */}
+        <div className="content-grid">
+          {/* ARTICLE TEXT */}
+          <article className="article-text">
+            <p>
+              <a href="#how-it-works">Tool calling</a> is the fundamental mechanism through which autonomous language models interact with external environments. Small tool catalogs function reliably, but as registered capabilities scale past 30 to 50 tools—Anthropic&rsquo;s documented degradation threshold—models suffer sharp drops in tool selection accuracy because schema tokens compete for attention and confuse lexical boundaries.
+            </p>
+            <p>
+              While closed platforms (Anthropic Tool Search, OpenAI Assistant Catalog) deploy proprietary server-side search, open ecosystems (Google Gemini, Ollama, vLLM, and local models) provide zero native mitigations. We present <strong>acri</strong> (<code>pip install pyacri</code>), an open-source capability resolver that operates client-side to isolate the exact top-k candidates in <strong>40 microseconds</strong>.
+            </p>
+
+            {/* SECTION 1: HOW IT WORKS */}
+            <section id="how-it-works">
+              <h2>How acri works</h2>
+              <p>
+                acri indexes tool declarations into an in-memory BM25 inverted index with query-side synonym expansion. Instead of scanning tools linearly across tokens, it hashes terms into $O(1)$ postings lists.
+              </p>
+
+              {/* FIGURE 1: PIPELINE */}
+              <div className="google-figure">
+                <div className="google-figure-body">
+                  <svg viewBox="0 0 720 180" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
+                    {/* Node 1 */}
+                    <rect x="15" y="45" width="150" height="90" rx="8" fill="#FFFFFF" stroke="#E0E2E0" strokeWidth="1.5" />
+                    <text x="90" y="75" textAnchor="middle" fontSize="13" fontWeight="700" fill="#1F1F1F">corpus.index()</text>
+                    <text x="90" y="98" textAnchor="middle" fontSize="11.5" fill="#5F6368">100+ MCP Tools</text>
+                    <text x="90" y="116" textAnchor="middle" fontSize="11" fill="#1A73E8">RAM POSTINGS</text>
+
+                    {/* Arrow 1 */}
+                    <line x1="165" y1="90" x2="200" y2="90" stroke="#BDC1C6" strokeWidth="1.5" strokeDasharray="3 3" />
+
+                    {/* Node 2 */}
+                    <rect x="205" y="45" width="165" height="90" rx="8" fill="#FFFFFF" stroke="#1A73E8" strokeWidth="1.5" />
+                    <text x="287" y="75" textAnchor="middle" fontSize="13" fontWeight="700" fill="#1A73E8">compass.resolve()</text>
+                    <text x="287" y="98" textAnchor="middle" fontSize="11.5" fill="#5F6368">In-Memory BM25</text>
+                    <text x="287" y="116" textAnchor="middle" fontSize="11" fill="#34A853">0.038 ms Latency</text>
+
+                    {/* Arrow 2 */}
+                    <line x1="370" y1="90" x2="405" y2="90" stroke="#BDC1C6" strokeWidth="1.5" strokeDasharray="3 3" />
+
+                    {/* Node 3 */}
+                    <rect x="410" y="45" width="145" height="90" rx="8" fill="#FFFFFF" stroke="#34A853" strokeWidth="1.5" />
+                    <text x="482" y="75" textAnchor="middle" fontSize="13" fontWeight="700" fill="#34A853">Top-5 Candidates</text>
+                    <text x="482" y="98" textAnchor="middle" fontSize="11.5" fill="#5F6368">95% Fewer Tokens</text>
+                    <text x="482" y="116" textAnchor="middle" fontSize="11" fill="#34A853">100% Recall@5</text>
+
+                    {/* Arrow 3 */}
+                    <line x1="555" y1="90" x2="590" y2="90" stroke="#BDC1C6" strokeWidth="1.5" strokeDasharray="3 3" />
+
+                    {/* Node 4 */}
+                    <rect x="595" y="45" width="115" height="90" rx="8" fill="#F8F9FA" stroke="#E0E2E0" strokeWidth="1.5" />
+                    <text x="652" y="80" textAnchor="middle" fontSize="13" fontWeight="700" fill="#1F1F1F">LLM Call</text>
+                    <text x="652" y="103" textAnchor="middle" fontSize="11.5" fill="#5F6368">Zero Lag</text>
+                  </svg>
+                </div>
+                <div className="google-figure-caption">
+                  <b>Figure 1: Capability Resolution Pipeline.</b> On each user turn, <code>compass.resolve()</code> filters 100+ schemas to the top 5 candidates in 38 microseconds before prompt generation.
+                </div>
+              </div>
+            </section>
+
+            {/* SECTION 2: CACHING LAW */}
+            <section id="caching-law">
+              <h2>The Prompt Caching Law</h2>
+              <p>
+                Major AI providers grant a ~90% discount on prompt tokens matching a static KV-cache prefix. Because tool schemas sit at the beginning of the prompt, rewriting the tool block on every conversational turn invalidates prefix caching.
+              </p>
+
+              {/* EQUATION CALLOUT */}
+              <div className="google-equation">
+                <div className="math">
+                  r &middot; C &middot; p &nbsp;&lt;&nbsp; C &middot; (p / 10) &nbsp;&nbsp;&iff;&nbsp;&nbsp; r &lt; 1/10
+                </div>
+                <div className="sub">
+                  Where C is full tool tokens, p is uncached price, and r is the reduction ratio.
+                </div>
+              </div>
+
+              <p>
+                <strong>The Resolve-Once Law:</strong> Pruning a tool schema block by less than tenfold while forfeiting cache discounts constitutes a net cost regression. acri enforces a resolve-once policy, writing the tool schema prefix once and maintaining it across turns.
+              </p>
+            </section>
+
+            {/* SECTION 3: EXPERIMENTS & RESULTS */}
+            <section id="experiments-results">
+              <h2>Experiments and results</h2>
+              <p>
+                Evaluations were conducted against a 100-tool synthetic enterprise corpus across 20 domains with live <code>gemini-2.5-flash</code> invocations.
+              </p>
+
+              {/* FIGURE 2: HORIZONTAL ACCURACY BARS */}
+              <div className="google-figure">
+                <div className="google-figure-body">
+                  <svg viewBox="0 0 680 160" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
+                    {/* Bar 1 */}
+                    <text x="170" y="45" textAnchor="end" fontSize="13" fontWeight="500" fill="#3C4043">Naive (100 Tools in Prompt)</text>
+                    <rect x="185" y="28" width="370" height="26" rx="4" fill="#EA4335" />
+                    <text x="565" y="46" fontSize="13" fontWeight="700" fill="#EA4335">84%</text>
+
+                    {/* Bar 2 */}
+                    <text x="170" y="105" textAnchor="end" fontSize="13" fontWeight="500" fill="#3C4043">acri (Top-5 Tools Offered)</text>
+                    <rect x="185" y="88" width="410" height="26" rx="4" fill="#34A853" />
+                    <text x="605" y="106" fontSize="13" fontWeight="700" fill="#34A853">92% (+8.0%)</text>
+                  </svg>
+                </div>
+                <div className="google-figure-caption">
+                  <b>Figure 2: Live Tool Selection Accuracy on Gemini 2.5 Flash.</b> Tested on 50 gold queries. acri improves tool selection accuracy from 84% to 92%, with zero resolver misses.
+                </div>
+              </div>
+
+              {/* FIGURE 3: RECALL AT K */}
+              <div className="google-figure">
+                <div className="google-figure-body">
+                  <svg viewBox="0 0 680 180" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
+                    {/* Y lines */}
+                    <line x1="80" y1="30" x2="640" y2="30" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+                    <line x1="80" y1="75" x2="640" y2="75" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+                    <line x1="80" y1="120" x2="640" y2="120" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+
+                    <text x="70" y="34" textAnchor="end" fontSize="11" fill="#80868B">100%</text>
+                    <text x="70" y="79" textAnchor="end" fontSize="11" fill="#80868B">90%</text>
+                    <text x="70" y="124" textAnchor="end" fontSize="11" fill="#80868B">80%</text>
+
+                    {/* Bars k=1 */}
+                    <rect x="120" y="54" width="30" height="80" rx="3" fill="#1A73E8" />
+                    <rect x="154" y="80" width="30" height="54" rx="3" fill="#BDC1C6" />
+                    <text x="152" y="152" textAnchor="middle" fontSize="12" fill="#3C4043">k = 1</text>
+
+                    {/* Bars k=3 */}
+                    <rect x="250" y="36" width="30" height="98" rx="3" fill="#1A73E8" />
+                    <rect x="284" y="52" width="30" height="82" rx="3" fill="#BDC1C6" />
+                    <text x="282" y="152" textAnchor="middle" fontSize="12" fill="#3C4043">k = 3</text>
+
+                    {/* Bars k=5 */}
+                    <rect x="380" y="24" width="30" height="110" rx="3" fill="#34A853" />
+                    <rect x="414" y="40" width="30" height="94" rx="3" fill="#BDC1C6" />
+                    <text x="412" y="152" textAnchor="middle" fontSize="12" fontWeight="700" fill="#34A853">k = 5 (Standard)</text>
+
+                    {/* Bars k=10 */}
+                    <rect x="510" y="24" width="30" height="110" rx="3" fill="#1A73E8" />
+                    <rect x="544" y="28" width="30" height="106" rx="3" fill="#BDC1C6" />
+                    <text x="542" y="152" textAnchor="middle" fontSize="12" fill="#3C4043">k = 10</text>
+                  </svg>
+                </div>
+                <div className="google-figure-caption">
+                  <b>Figure 3: Recall@k across 100 Tools vs 504 Tools.</b> Blue/Green bars indicate 100-tool corpus (100% recall at k=5); grey bars show 504-tool scale test (92% recall at k=5).
+                </div>
+              </div>
+            </section>
+
+            {/* SECTION 4: LOOKING AHEAD */}
+            <section id="looking-ahead">
+              <h2>Looking ahead</h2>
+              <p>
+                Future work includes expanding benchmark evaluations to n=1,000+ queries across multi-model ensembles (Claude 3.7, GPT-4o, LLaMA-3.3) and benchmarking hybrid lexical-dense embedding indices.
+              </p>
+            </section>
+
+            {/* SECTION 5: REPRODUCTION */}
+            <section id="reproduction">
+              <h2>Reproduction and code</h2>
+              <p>
+                All numbers are reproducible via the open-source <code>assay/</code> test suite:
+              </p>
+              <div style={{ background: '#F8F9FA', border: '1px solid #E0E2E0', borderRadius: '8px', padding: '16px 20px', fontFamily: 'var(--font-mono)', fontSize: '13px', lineHeight: 1.6 }}>
+                <div><span style={{ color: '#1A73E8' }}>$</span> pip install pyacri</div>
+                <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.recall <span style={{ color: '#80868B' }}># §4.1 (100% Recall@5)</span></div>
+                <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.scale <span style={{ color: '#80868B' }}># §4.2 (504-tool scale test)</span></div>
+                <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy <span style={{ color: '#80868B' }}># §4.3 (Live Gemini 2.5 Flash)</span></div>
+              </div>
+            </section>
+          </article>
+
+          {/* QUICK LINKS RAIL (RIGHT) */}
+          <aside className="quick-links-rail">
+            <div className="quick-links-box">
+              <div className="quick-links-title">Quick Links</div>
+              <ul className="quick-links-list">
+                <li>
+                  <a href="#how-it-works" className={`quick-link-item ${activeId === 'how-it-works' ? 'active' : ''}`}>
+                    <span className="quick-link-icon">+</span>
+                    <span>How acri works</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#caching-law" className={`quick-link-item ${activeId === 'caching-law' ? 'active' : ''}`}>
+                    <span className="quick-link-icon">+</span>
+                    <span>The Caching Law</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#experiments-results" className={`quick-link-item ${activeId === 'experiments-results' ? 'active' : ''}`}>
+                    <span className="quick-link-icon">+</span>
+                    <span>Experiments &amp; results</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#looking-ahead" className={`quick-link-item ${activeId === 'looking-ahead' ? 'active' : ''}`}>
+                    <span className="quick-link-icon">+</span>
+                    <span>Looking ahead</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#reproduction" className={`quick-link-item ${activeId === 'reproduction' ? 'active' : ''}`}>
+                    <span className="quick-link-icon">+</span>
+                    <span>Reproduction &amp; code</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Actions Box */}
+            <div className="quick-links-box">
+              <div className="quick-links-title">Paper Artifacts</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <button 
+                  type="button" 
+                  onClick={() => setIsPdfOpen(true)}
+                  className="google-btn-primary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Read Paper (PDF)
+                </button>
+
+                <button 
+                  type="button" 
+                  onClick={() => setIsBibtexOpen(true)}
+                  className="google-btn-secondary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Cite BibTeX
+                </button>
               </div>
             </div>
           </aside>
         </div>
-      </div>
+
+        {/* OTHER POSTS OF INTEREST */}
+        <section className="related-posts-section">
+          <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1F1F1F', letterSpacing: '-0.02em' }}>
+            Other posts of interest
+          </h3>
+
+          <div className="related-posts-grid">
+            <a href="https://forge.inerate.com/atelier" target="_blank" rel="noopener noreferrer" className="related-card">
+              <div className="related-card-img">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <rect x="8" y="8" width="48" height="48" rx="8" stroke="#34A853" strokeWidth="2" />
+                  <rect x="22" y="22" width="20" height="20" rx="3" fill="#34A853" />
+                </svg>
+              </div>
+              <div className="related-card-content">
+                <div className="related-card-title">Atelier: Deterministic Runtime Isolation for AI Agents</div>
+                <div className="related-card-desc">Zero-bloat agent framework designed for production reliability and sandboxed execution.</div>
+              </div>
+            </a>
+
+            <a href="https://forge.inerate.com/acri" target="_blank" rel="noopener noreferrer" className="related-card">
+              <div className="related-card-img">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <circle cx="32" cy="32" r="24" stroke="#1A73E8" strokeWidth="2" strokeDasharray="3 3" />
+                  <circle cx="32" cy="32" r="10" stroke="#1A73E8" strokeWidth="2" />
+                </svg>
+              </div>
+              <div className="related-card-content">
+                <div className="related-card-title">acri studio: Real-Time Local Trace Observability</div>
+                <div className="related-card-desc">Zero-telemetry visualizer streaming capability resolution traces on port 8099.</div>
+              </div>
+            </a>
+
+            <Link href="/" className="related-card">
+              <div className="related-card-img">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <rect x="12" y="16" width="40" height="32" rx="6" stroke="#EA4335" strokeWidth="2" />
+                  <line x1="20" y1="26" x2="44" y2="26" stroke="#EA4335" strokeWidth="2" />
+                  <line x1="20" y1="36" x2="36" y2="36" stroke="#EA4335" strokeWidth="2" />
+                </svg>
+              </div>
+              <div className="related-card-content">
+                <div className="related-card-title">Pre-Generation Intent Gating vs Cascades</div>
+                <div className="related-card-desc">Why lightweight routing outperforms cascade fallbacks in multi-tier LLM ensembles.</div>
+              </div>
+            </Link>
+          </div>
+        </section>
+      </main>
 
       <Footer />
 
-      {/* PDF MODAL OVERLAY */}
+      {/* PDF MODAL */}
       <PdfViewerModal 
         isOpen={isPdfOpen} 
         onClose={() => setIsPdfOpen(false)}
@@ -532,13 +439,6 @@ export default function AcriPaperPage() {
         isOpen={isBibtexOpen} 
         onClose={() => setIsBibtexOpen(false)} 
       />
-
-      {/* TOAST NOTIFICATION */}
-      {toastMessage && (
-        <div className="toast">
-          {toastMessage}
-        </div>
-      )}
     </div>
   );
 }
