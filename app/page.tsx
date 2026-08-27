@@ -11,22 +11,22 @@ export default function ResearchHubPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'microkernels' | 'caching' | 'systems'>('all');
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh', color: '#1F1F1F' }}>
+    <div style={{ background: '#FFFFFF', minHeight: '100vh', color: '#202124' }}>
       <Header />
 
       {/* HUB HERO */}
-      <section style={{ padding: '60px 0 40px', borderBottom: '1px solid #E0E2E0', background: '#FAFAFA' }}>
-        <div className="container">
+      <section style={{ padding: '60px 0 40px', borderBottom: '1px solid #E8EAED', background: '#FAFAFA' }}>
+        <div className="research-container">
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '9999px', background: '#E8F0FE', border: '1px solid #1A73E8', color: '#1A73E8', fontSize: '12px', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '16px' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1A73E8' }} />
             Open Source AI Research Collective
           </div>
 
-          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.035em', color: '#1F1F1F', maxWidth: '900px', marginBottom: '16px' }}>
+          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.035em', color: '#202124', maxWidth: '900px', marginBottom: '16px' }}>
             Capability Microkernels &amp; Deterministic Architecture.
           </h1>
 
-          <p style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)', color: '#444746', lineHeight: 1.6, maxWidth: '780px' }}>
+          <p style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)', color: '#3C4043', lineHeight: 1.6, maxWidth: '780px' }}>
             Empirical technical reports, mathematical proofs, and client-side systems designed for discipline, microsecond performance, and verified reproducibility.
           </p>
 
@@ -66,16 +66,16 @@ export default function ResearchHubPage() {
 
       {/* PAPERS INDEX */}
       <section style={{ padding: '50px 0 80px' }}>
-        <div className="container">
+        <div className="research-container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#1F1F1F', letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#202124', letterSpacing: '-0.02em' }}>
               Featured Publications
             </h2>
             <span style={{ fontSize: '13px', color: '#5F6368' }}>Showing 1 of 1 published papers</span>
           </div>
 
           {/* FEATURED FLAGSHIP PAPER CARD: ACRI */}
-          <div style={{ background: '#FFFFFF', border: '1px solid #E0E2E0', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.05)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          <div style={{ background: '#FFFFFF', border: '1px solid #DADCE0', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.05)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
             <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' }}>
@@ -85,13 +85,13 @@ export default function ResearchHubPage() {
                   <span style={{ fontSize: '12.5px', color: '#5F6368', fontFamily: 'var(--font-mono)' }}>August 2026</span>
                 </div>
 
-                <h3 style={{ fontSize: '23px', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.02em', color: '#1F1F1F', marginBottom: '14px' }}>
+                <h3 style={{ fontSize: '23px', fontWeight: 700, lineHeight: 1.3, letterSpacing: '-0.02em', color: '#202124', marginBottom: '14px' }}>
                   <Link href="/acri" style={{ color: 'inherit', textDecoration: 'none' }}>
                     acri: A Client-Side Capability Resolver for Tool-Augmented Language Models
                   </Link>
                 </h3>
 
-                <p style={{ fontSize: '14.5px', color: '#444746', lineHeight: 1.65, marginBottom: '20px' }}>
+                <p style={{ fontSize: '14.5px', color: '#3C4043', lineHeight: 1.65, marginBottom: '20px' }}>
                   Resolving the exact top-k tools in 40 microseconds, eliminating prompt context bloat by 95%, and proving why dynamic per-turn tool rewriting is an economic anti-pattern under modern prompt caching regimes.
                 </p>
 
@@ -103,14 +103,14 @@ export default function ResearchHubPage() {
               </div>
 
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link href="/acri" className="google-btn-primary">
+                <Link href="/acri" className="g-btn-primary">
                   Read Full Paper Article &rarr;
                 </Link>
 
                 <button 
                   type="button" 
                   onClick={() => setIsPdfOpen(true)}
-                  className="google-btn-secondary"
+                  className="g-btn-secondary"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -122,8 +122,8 @@ export default function ResearchHubPage() {
             </div>
 
             {/* PREVIEW VISUAL */}
-            <div style={{ background: '#F8F9FA', borderLeft: '1px solid #E0E2E0', padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ width: '100%', maxWidth: '360px', background: '#FFFFFF', border: '1px solid #E0E2E0', borderRadius: '12px', padding: '20px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+            <div style={{ background: '#F8F9FA', borderLeft: '1px solid #DADCE0', padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ width: '100%', maxWidth: '360px', background: '#FFFFFF', border: '1px solid #DADCE0', borderRadius: '12px', padding: '20px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                 <div style={{ fontSize: '11px', color: '#1A73E8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '12px' }}>
                   Key Empirical Receipts
                 </div>

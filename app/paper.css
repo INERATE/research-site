@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INERATE RESEARCH — EXACT GOOGLE RESEARCH / DEEPMIND BLOG AESTHETIC
+   INERATE RESEARCH — GOOGLE RESEARCH / DEEPMIND THEME
    ========================================================================== */
 
 :root {
@@ -29,7 +29,7 @@
   --font-mono: 'IBM Plex Mono', 'Roboto Mono', Menlo, Consolas, monospace;
 }
 
-/* Reset */
+/* Reset & Global */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -51,49 +51,52 @@ body {
 }
 
 /* Container */
-.research-container {
+.research-container, .container {
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 /* ==========================================================================
-   GOOGLE RESEARCH HEADER
+   GOOGLE RESEARCH HEADER (NAVBAR)
    ========================================================================== */
-.g-header {
+.g-header, .google-header {
   position: sticky;
   top: 0;
   z-index: 100;
   background: #FFFFFF;
   border-bottom: 1px solid var(--border-light);
   height: 64px;
+  display: flex;
+  align-items: center;
 }
 
-.g-nav-inner {
+.g-nav-inner, .google-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: 100%;
 }
 
-.g-brand {
+.g-brand, .google-brand {
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
   color: #202124;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.g-nav-links {
+.g-nav-links, .google-nav-links {
   display: flex;
   align-items: center;
   gap: 28px;
 }
 
-.g-nav-link {
+.g-nav-link, .google-nav-link {
   font-size: 14px;
   color: #3C4043;
   text-decoration: none;
@@ -101,11 +104,12 @@ body {
   transition: color 0.15s;
 }
 
-.g-nav-link:hover, .g-nav-link.active {
+.g-nav-link:hover, .g-nav-link.active,
+.google-nav-link:hover, .google-nav-link.active {
   color: var(--google-blue);
 }
 
-.g-search-btn {
+.g-search-btn, .google-search-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -119,14 +123,14 @@ body {
   transition: background 0.15s;
 }
 
-.g-search-btn:hover {
+.g-search-btn:hover, .google-search-btn:hover {
   background: var(--bg-subtle);
 }
 
 /* ==========================================================================
    BREADCRUMBS
    ========================================================================== */
-.g-breadcrumbs {
+.g-breadcrumbs, .breadcrumbs {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -135,20 +139,54 @@ body {
   padding: 28px 0 20px;
 }
 
-.g-breadcrumbs a {
+.g-breadcrumbs a, .breadcrumbs a {
   color: var(--text-muted);
   text-decoration: none;
 }
 
-.g-breadcrumbs a:hover {
+.g-breadcrumbs a:hover, .breadcrumbs a:hover {
   color: var(--google-blue);
   text-decoration: underline;
 }
 
 /* ==========================================================================
+   GOOGLE PILL FILTER CHIPS
+   ========================================================================== */
+.google-filter-pill {
+  background: #FFFFFF;
+  border: 1px solid #DADCE0;
+  color: #3C4043;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+}
+
+.google-filter-pill:hover {
+  background: #F8F9FA;
+  border-color: #BDC1C6;
+  color: #202124;
+}
+
+.google-filter-pill.active {
+  background: #E8F0FE;
+  border-color: #1A73E8;
+  color: #1A73E8;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(26, 115, 232, 0.15);
+}
+
+/* ==========================================================================
    HERO SECTION
    ========================================================================== */
-.g-hero {
+.g-hero, .article-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 48px;
@@ -157,13 +195,13 @@ body {
 }
 
 @media (max-width: 860px) {
-  .g-hero {
+  .g-hero, .article-hero {
     grid-template-columns: 1fr;
     gap: 28px;
   }
 }
 
-.g-title {
+.g-title, .article-title {
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   font-weight: 700;
   line-height: 1.15;
@@ -195,7 +233,7 @@ body {
 }
 
 /* Pastel Hero Graphic Card (Google Style) */
-.g-hero-card {
+.g-hero-card, .hero-graphic-card {
   width: 100%;
   aspect-ratio: 16 / 10;
   background: linear-gradient(135deg, #E6F4EA 0%, #E8F0FE 50%, #FCE8E6 100%);
@@ -207,7 +245,7 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-.g-hero-grid-preview {
+.g-hero-grid-preview, .hero-graphic-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
@@ -218,7 +256,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-.g-hero-grid-preview .dot {
+.g-hero-grid-preview .dot, .hero-graphic-grid .cell {
   width: 24px;
   height: 24px;
   border-radius: 4px;
@@ -227,7 +265,7 @@ body {
 /* ==========================================================================
    LEAD STATEMENT (THE BIG THESIS BLOCK)
    ========================================================================== */
-.g-lead-statement {
+.g-lead-statement, .lead-statement {
   font-size: clamp(1.2rem, 2.2vw, 1.45rem);
   font-weight: 500;
   line-height: 1.45;
@@ -240,7 +278,7 @@ body {
 /* ==========================================================================
    2-COLUMN READING LAYOUT & SIDEBAR
    ========================================================================== */
-.g-layout {
+.g-layout, .content-grid {
   display: grid;
   grid-template-columns: minmax(0, 680px) 240px;
   justify-content: space-between;
@@ -249,38 +287,38 @@ body {
 }
 
 @media (max-width: 920px) {
-  .g-layout {
+  .g-layout, .content-grid {
     grid-template-columns: 1fr;
     gap: 36px;
   }
-  .g-sidebar {
+  .g-sidebar, .quick-links-rail {
     order: -1;
   }
 }
 
 /* Main Article Typography */
-.g-article {
+.g-article, .article-text {
   font-size: 16px;
   line-height: 1.82;
   color: #3C4043;
 }
 
-.g-article p {
+.g-article p, .article-text p {
   margin-bottom: 24px;
 }
 
-.g-article a {
+.g-article a, .article-text a {
   color: var(--google-blue);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.15s;
 }
 
-.g-article a:hover {
+.g-article a:hover, .article-text a:hover {
   color: var(--google-blue-hover);
 }
 
-.g-article h2 {
+.g-article h2, .article-text h2 {
   font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -290,7 +328,7 @@ body {
   scroll-margin-top: 80px;
 }
 
-.g-article h3 {
+.g-article h3, .article-text h3 {
   font-size: 19px;
   font-weight: 600;
   color: #202124;
@@ -298,7 +336,7 @@ body {
   scroll-margin-top: 80px;
 }
 
-.g-article code {
+.g-article code, .article-text code {
   font-family: var(--font-mono);
   font-size: 13.5px;
   background: var(--bg-elevated);
@@ -308,9 +346,9 @@ body {
 }
 
 /* Google Action Buttons */
-.g-btn-primary {
+.g-btn-primary, .google-btn-primary {
   background: var(--google-blue);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border: 1px solid var(--google-blue);
   padding: 10px 22px;
   border-radius: 9999px;
@@ -325,14 +363,14 @@ body {
   box-shadow: 0 1px 3px rgba(26, 115, 232, 0.3);
 }
 
-.g-btn-primary:hover {
+.g-btn-primary:hover, .google-btn-primary:hover {
   background: var(--google-blue-hover);
   box-shadow: 0 2px 6px rgba(26, 115, 232, 0.4);
 }
 
-.g-btn-secondary {
+.g-btn-secondary, .google-btn-secondary {
   background: #FFFFFF;
-  color: var(--google-blue);
+  color: var(--google-blue) !important;
   border: 1px solid var(--border-main);
   padding: 10px 20px;
   border-radius: 9999px;
@@ -346,13 +384,13 @@ body {
   transition: all 0.15s;
 }
 
-.g-btn-secondary:hover {
+.g-btn-secondary:hover, .google-btn-secondary:hover {
   background: var(--bg-subtle);
   border-color: var(--border-dark);
 }
 
 /* Figures */
-.g-figure {
+.g-figure, .google-figure {
   background: #FFFFFF;
   border: 1px solid var(--border-main);
   border-radius: 12px;
@@ -361,7 +399,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.g-figure-body {
+.g-figure-body, .google-figure-body {
   padding: 28px;
   background: #FAFAFA;
   display: flex;
@@ -369,7 +407,7 @@ body {
   align-items: center;
 }
 
-.g-figure-caption {
+.g-figure-caption, .google-figure-caption {
   padding: 14px 20px;
   background: #FFFFFF;
   border-top: 1px solid var(--border-light);
@@ -378,12 +416,12 @@ body {
   line-height: 1.6;
 }
 
-.g-figure-caption b {
+.g-figure-caption b, .google-figure-caption b {
   color: #202124;
 }
 
 /* Equation Box */
-.g-equation {
+.g-equation, .google-equation {
   background: #F8F9FA;
   border-left: 4px solid var(--google-blue);
   padding: 18px 22px;
@@ -391,7 +429,7 @@ body {
   margin: 28px 0;
 }
 
-.g-equation .math {
+.g-equation .math, .google-equation .math {
   font-family: var(--font-mono);
   font-size: 16.5px;
   font-weight: 700;
@@ -399,7 +437,7 @@ body {
   margin-bottom: 6px;
 }
 
-.g-equation .sub {
+.g-equation .sub, .google-equation .sub {
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -407,7 +445,7 @@ body {
 /* ==========================================================================
    SIDEBAR (QUICK LINKS)
    ========================================================================== */
-.g-sidebar {
+.g-sidebar, .quick-links-rail {
   position: sticky;
   top: 88px;
   height: fit-content;
@@ -416,12 +454,12 @@ body {
   gap: 24px;
 }
 
-.g-sidebar-block {
+.g-sidebar-block, .quick-links-box {
   padding: 16px 0;
   border-top: 1px solid var(--border-light);
 }
 
-.g-sidebar-title {
+.g-sidebar-title, .quick-links-title {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -430,14 +468,14 @@ body {
   margin-bottom: 14px;
 }
 
-.g-quick-links {
+.g-quick-links, .quick-links-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
   list-style: none;
 }
 
-.g-quick-link-item {
+.g-quick-link-item, .quick-link-item {
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -447,11 +485,11 @@ body {
   transition: color 0.15s;
 }
 
-.g-quick-link-item:hover {
+.g-quick-link-item:hover, .quick-link-item:hover {
   color: var(--google-blue);
 }
 
-.g-link-icon {
+.g-link-icon, .quick-link-icon {
   width: 15px;
   height: 15px;
   border: 1px solid var(--border-dark);
@@ -468,19 +506,19 @@ body {
 /* ==========================================================================
    OTHER POSTS OF INTEREST (BOTTOM)
    ========================================================================== */
-.g-related-section {
+.g-related-section, .related-posts-section {
   padding: 60px 0;
   border-top: 1px solid var(--border-light);
 }
 
-.g-related-grid {
+.g-related-grid, .related-posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-top: 24px;
 }
 
-.g-related-card {
+.g-related-card, .related-card {
   background: #FFFFFF;
   border: 1px solid var(--border-main);
   border-radius: 12px;
@@ -489,15 +527,16 @@ body {
   color: inherit;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  display: block;
 }
 
-.g-related-card:hover {
+.g-related-card:hover, .related-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   border-color: var(--border-dark);
 }
 
-.g-related-img {
+.g-related-img, .related-card-img {
   width: 100%;
   height: 130px;
   background: #F8F9FA;
@@ -507,11 +546,11 @@ body {
   border-bottom: 1px solid var(--border-light);
 }
 
-.g-related-body {
+.g-related-body, .related-card-content {
   padding: 18px;
 }
 
-.g-related-title {
+.g-related-title, .related-card-title {
   font-size: 15.5px;
   font-weight: 700;
   color: #202124;
@@ -519,7 +558,7 @@ body {
   margin-bottom: 6px;
 }
 
-.g-related-desc {
+.g-related-desc, .related-card-desc {
   font-size: 13px;
   color: var(--text-muted);
   line-height: 1.5;
@@ -528,45 +567,46 @@ body {
 /* ==========================================================================
    GOOGLE FOOTER
    ========================================================================== */
-.g-footer {
+.g-footer, .google-footer {
   border-top: 1px solid var(--border-light);
   background: #F8F9FA;
   padding: 48px 0 32px;
   font-size: 13px;
   color: var(--text-muted);
+  margin-top: 60px;
 }
 
-.g-footer-cols {
+.g-footer-cols, .footer-cols {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 32px;
   margin-bottom: 40px;
 }
 
-.g-footer-col-title {
+.g-footer-col-title, .footer-col-title {
   font-size: 13px;
   font-weight: 700;
   color: #202124;
   margin-bottom: 14px;
 }
 
-.g-footer-links {
+.g-footer-links, .footer-col-links {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.g-footer-links a {
+.g-footer-links a, .footer-col-links a {
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.g-footer-links a:hover {
+.g-footer-links a:hover, .footer-col-links a:hover {
   color: var(--google-blue);
 }
 
-.g-footer-bottom {
+.g-footer-bottom, .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -580,7 +620,7 @@ body {
 /* ==========================================================================
    MODAL OVERLAY (PDF & BIBTEX)
    ========================================================================== */
-.modal-backdrop {
+.modal-backdrop, .pdf-modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(32, 33, 36, 0.7);
@@ -593,7 +633,7 @@ body {
   padding: 20px;
 }
 
-.modal-window {
+.modal-window, .pdf-modal-window {
   background: #FFFFFF;
   border-radius: 12px;
   width: 100%;
@@ -605,7 +645,7 @@ body {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
 }
 
-.modal-bar {
+.modal-bar, .pdf-modal-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -614,13 +654,13 @@ body {
   border-bottom: 1px solid var(--border-light);
 }
 
-.modal-title {
+.modal-title, .pdf-modal-title {
   font-size: 14px;
   font-weight: 600;
   color: #202124;
 }
 
-.pdf-iframe {
+.pdf-iframe, .pdf-frame {
   width: 100%;
   height: 100%;
   border: none;
