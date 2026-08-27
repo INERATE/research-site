@@ -6,6 +6,7 @@ import { Header } from '@/app/components/header';
 import { Footer } from '@/app/components/footer';
 import { PdfViewerModal } from '@/app/components/pdf-viewer-modal';
 import { BibtexModal } from '@/app/components/bibtex-modal';
+import { HERO_DOTS } from './hero-dots';
 
 export default function AcriPaperPage() {
   const [isPdfOpen, setIsPdfOpen] = useState(false);
@@ -129,19 +130,22 @@ export default function AcriPaperPage() {
             </div>
           </div>
 
-          {/* PASTEL HERO GRAPHIC CARD */}
+          {/* HERO GRAPHIC: the actual mechanism, not a generic icon --
+              100 registered tools (grey) narrowing to the 5 acri resolves (blue),
+              same story as Figure 1 below, told before the reader gets there */}
           <div className="g-hero-card">
-            <div className="g-hero-grid-preview">
-              <div className="dot" style={{ background: '#34A853' }} />
-              <div className="dot" style={{ background: '#FBBC04' }} />
-              <div className="dot" style={{ background: '#1A73E8' }} />
-              <div className="dot" style={{ background: '#EA4335' }} />
-              <div className="dot" style={{ background: '#7C3AED' }} />
-              <div className="dot" style={{ background: '#25BE74' }} />
-              <div className="dot" style={{ background: '#1A73E8' }} />
-              <div className="dot" style={{ background: '#34A853' }} />
-              <div className="dot" style={{ background: '#FBBC04' }} />
-            </div>
+            <svg viewBox="0 0 300 190" width="82%" style={{ overflow: 'visible' }}>
+              {HERO_DOTS.map((d, i) => (
+                <circle key={i} cx={d.x} cy={d.y} r={d.hit ? 5 : 2.6}
+                  fill={d.hit ? '#1A73E8' : '#DADCE0'} opacity={d.hit ? 1 : 0.85} />
+              ))}
+              {HERO_DOTS.filter(d => d.hit).map((d, i) => (
+                <line key={i} x1={d.x} y1={d.y} x2="272" y2="95"
+                  stroke="#1A73E8" strokeWidth="1" strokeOpacity="0.35" />
+              ))}
+              <circle cx="272" cy="95" r="9" fill="#FFFFFF" stroke="#34A853" strokeWidth="2" />
+              <circle cx="272" cy="95" r="3" fill="#34A853" />
+            </svg>
           </div>
         </section>
 
