@@ -244,7 +244,7 @@ export default function AcriPaperPage() {
                     <rect x="195" y="30" width="155" height="85" rx="8" fill="#FFFFFF" stroke="#1A73E8" strokeWidth="1.5" />
                     <text x="272" y="60" textAnchor="middle" fontSize="13" fontWeight="700" fill="#1A73E8">compass.resolve()</text>
                     <text x="272" y="82" textAnchor="middle" fontSize="11" fill="#5F6368">In-Memory BM25</text>
-                    <text x="272" y="98" textAnchor="middle" fontSize="10.5" fill="#34A853">0.038 ms Latency</text>
+                    <text x="272" y="98" textAnchor="middle" fontSize="10.5" fill="#34A853">0.040 ms Latency</text>
 
                     <line x1="350" y1="72" x2="385" y2="72" stroke="#BDC1C6" strokeWidth="1.5" strokeDasharray="3 3" />
 
@@ -312,41 +312,52 @@ export default function AcriPaperPage() {
                 </div>
               </div>
 
-              {/* FIGURE 3: RECALL AT K */}
+              {/* FIGURE 3: RECALL AT K -- bar heights computed from assay/recall.py and
+                  assay/scale.py's actual output (74/90/100/100 and 60/82/92/98), not eyeballed */}
               <div className="g-figure">
                 <div className="g-figure-body">
                   <svg viewBox="0 0 680 170" width="100%" height="100%" style={{ fontFamily: 'var(--font-sans)' }}>
-                    <line x1="80" y1="25" x2="640" y2="25" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="80" y1="70" x2="640" y2="70" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
-                    <line x1="80" y1="115" x2="640" y2="115" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+                    <line x1="80" y1="20" x2="640" y2="20" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+                    <line x1="80" y1="82.5" x2="640" y2="82.5" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
+                    <line x1="80" y1="145" x2="640" y2="145" stroke="#E8EAED" strokeWidth="1" strokeDasharray="3 3" />
 
-                    <text x="70" y="29" textAnchor="end" fontSize="11" fill="#80868B">100%</text>
-                    <text x="70" y="74" textAnchor="end" fontSize="11" fill="#80868B">90%</text>
-                    <text x="70" y="119" textAnchor="end" fontSize="11" fill="#80868B">80%</text>
+                    <text x="70" y="24" textAnchor="end" fontSize="11" fill="#80868B">100%</text>
+                    <text x="70" y="86.5" textAnchor="end" fontSize="11" fill="#80868B">75%</text>
+                    <text x="70" y="149" textAnchor="end" fontSize="11" fill="#80868B">50%</text>
 
-                    {/* k=1 */}
-                    <rect x="120" y="50" width="30" height="75" rx="3" fill="#1A73E8" />
-                    <rect x="154" y="75" width="30" height="50" rx="3" fill="#BDC1C6" />
-                    <text x="152" y="145" textAnchor="middle" fontSize="12" fill="#3C4043">k = 1</text>
+                    {/* k=1 -- 100-tool 74%, 504-tool 60% */}
+                    <rect x="120" y="85" width="30" height="60" rx="3" fill="#1A73E8" />
+                    <text x="135" y="80" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#1A73E8">74%</text>
+                    <rect x="154" y="120" width="30" height="25" rx="3" fill="#BDC1C6" />
+                    <text x="169" y="115" textAnchor="middle" fontSize="10.5" fill="#80868B">60%</text>
+                    <text x="152" y="162" textAnchor="middle" fontSize="12" fill="#3C4043">k = 1</text>
 
-                    {/* k=3 */}
-                    <rect x="250" y="32" width="30" height="93" rx="3" fill="#1A73E8" />
-                    <rect x="284" y="48" width="30" height="77" rx="3" fill="#BDC1C6" />
-                    <text x="282" y="145" textAnchor="middle" fontSize="12" fill="#3C4043">k = 3</text>
+                    {/* k=3 -- 100-tool 90%, 504-tool 82% */}
+                    <rect x="250" y="45" width="30" height="100" rx="3" fill="#1A73E8" />
+                    <text x="265" y="40" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#1A73E8">90%</text>
+                    <rect x="284" y="65" width="30" height="80" rx="3" fill="#BDC1C6" />
+                    <text x="299" y="60" textAnchor="middle" fontSize="10.5" fill="#80868B">82%</text>
+                    <text x="282" y="162" textAnchor="middle" fontSize="12" fill="#3C4043">k = 3</text>
 
-                    {/* k=5 */}
-                    <rect x="380" y="20" width="30" height="105" rx="3" fill="#34A853" />
-                    <rect x="414" y="36" width="30" height="89" rx="3" fill="#BDC1C6" />
-                    <text x="412" y="145" textAnchor="middle" fontSize="12" fontWeight="700" fill="#34A853">k = 5 (Standard)</text>
+                    {/* k=5 -- 100-tool 100%, 504-tool 92% */}
+                    <rect x="380" y="20" width="30" height="125" rx="3" fill="#34A853" />
+                    <text x="395" y="15" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#34A853">100%</text>
+                    <rect x="414" y="40" width="30" height="105" rx="3" fill="#BDC1C6" />
+                    <text x="429" y="35" textAnchor="middle" fontSize="10.5" fill="#80868B">92%</text>
+                    <text x="412" y="162" textAnchor="middle" fontSize="12" fontWeight="700" fill="#34A853">k = 5 (Standard)</text>
 
-                    {/* k=10 */}
-                    <rect x="510" y="20" width="30" height="105" rx="3" fill="#1A73E8" />
-                    <rect x="544" y="24" width="30" height="101" rx="3" fill="#BDC1C6" />
-                    <text x="542" y="145" textAnchor="middle" fontSize="12" fill="#3C4043">k = 10</text>
+                    {/* k=10 -- 100-tool 100%, 504-tool 98% */}
+                    <rect x="510" y="20" width="30" height="125" rx="3" fill="#1A73E8" />
+                    <text x="525" y="15" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#1A73E8">100%</text>
+                    <rect x="544" y="25" width="30" height="120" rx="3" fill="#BDC1C6" />
+                    <text x="559" y="20" textAnchor="middle" fontSize="10.5" fill="#80868B">98%</text>
+                    <text x="542" y="162" textAnchor="middle" fontSize="12" fill="#3C4043">k = 10</text>
                   </svg>
                 </div>
                 <div className="g-figure-caption">
-                  <b>Figure 3: Recall@k across 100 Tools vs 504 Tools.</b> Solid bars show 100-tool corpus (100% recall at k=5); grey bars show 504-tool scale stress test (92% recall at k=5).
+                  <b>Figure 3: Recall@k, 100-tool corpus vs. 504-tool scale test.</b> Solid bars: 100 tools
+                  (<code>assay/recall.py</code>). Grey bars: 504 tools (<code>assay/scale.py</code>). Recall
+                  degrades with scale at every k except k=5&rsquo;s ceiling; reported as measured, not tuned away.
                 </div>
               </div>
             </section>
@@ -389,7 +400,7 @@ export default function AcriPaperPage() {
                 <li>OpenAI, &ldquo;Using tools: defer_loading,&rdquo; OpenAI API Reference, 2025.</li>
                 <li>S. Robertson and H. Zaragoza, &ldquo;The probabilistic relevance framework: BM25 and beyond,&rdquo; <em>Foundations and Trends in Information Retrieval</em>, 2009.</li>
                 <li>Model Context Protocol, &ldquo;SEP-1300: Tool filtering with groups and tags,&rdquo; 2025.</li>
-                <li>L. Nguyen and Q. Diao, &ldquo;Is Escalation Worth It? Routing vs Cascades in LLM Ensembles,&rdquo; <em>arXiv:2602.xxxxx</em>, 2026.</li>
+                <li>Nguyen and Diao, &ldquo;Is Escalation Worth It? A Decision-Theoretic Characterization of LLM Cascades,&rdquo; <em>arXiv:2605.06350</em>, 2026.</li>
               </ol>
             </section>
           </article>
