@@ -370,8 +370,8 @@ export default function AcriPaperPage() {
             <section id="limitations">
               <h2>5. Limitations &amp; Future Work</h2>
               <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '15px', color: '#3C4043' }}>
-                <li><strong>Sample Size:</strong> 50 gold queries is small for a headline claim; larger 1,000-query benchmarks are ongoing.</li>
-                <li><strong>Single Model:</strong> All accuracy numbers are <code>gemini-2.5-flash</code>; multi-model generalization is pending.</li>
+                <li><strong>Sample Size:</strong> 50 gold queries is small for a headline claim; no bootstrap confidence interval or paired significance test has been computed. Highest-priority gap.</li>
+                <li><strong>Single Model:</strong> All accuracy numbers are <code>gemini-2.5-flash</code> only.</li>
                 <li><strong>Dense Baseline:</strong> BM25 vs dense embeddings comparison remains an open benchmark.</li>
                 <li><strong>Synthetic Catalog:</strong> Synthetic enterprise tools were used rather than live production MCP servers.</li>
               </ul>
