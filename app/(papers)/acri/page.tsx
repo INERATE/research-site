@@ -151,7 +151,7 @@ export default function AcriPaperPage() {
 
         {/* LEAD STATEMENT */}
         <div className="g-lead-statement" id="abstract">
-          We present acri, an open-source client-side capability resolver that reduces offered tool schemas by 95%, isolates top-5 candidates in 40 microseconds, and improves live tool-selection accuracy on every one of five models tested across three vendors (Google, Anthropic, Meta) while proving the Prompt Caching Inversion Theorem.
+          We present acri, an open-source client-side capability resolver that reduces offered tool schemas by 95%, isolates top-5 candidates in 40 microseconds, and improves live tool-selection accuracy on every one of seven models tested across five vendors (Google, Anthropic, Meta, OpenAI, xAI) while proving the Prompt Caching Inversion Theorem.
         </div>
 
         {/* 2-COLUMN CONTENT & SIDEBAR */}
@@ -190,7 +190,7 @@ export default function AcriPaperPage() {
                   <tbody>
                     <tr style={{ borderBottom: '1px solid #E8EAED' }}>
                       <td style={{ padding: '10px 14px', fontWeight: 600 }}>Improves Tool Accuracy</td>
-                      <td style={{ padding: '10px 14px', color: '#137333' }}><strong>Measured.</strong> Five models, three vendors: +2 to +8 points each, one run per model (&sect;4).</td>
+                      <td style={{ padding: '10px 14px', color: '#137333' }}><strong>Measured.</strong> Seven models, five vendors: +2 to +10 points each, one run per model (&sect;4).</td>
                     </tr>
                     <tr style={{ borderBottom: '1px solid #E8EAED' }}>
                       <td style={{ padding: '10px 14px', fontWeight: 600 }}>Frees Context Budget</td>
@@ -231,7 +231,7 @@ export default function AcriPaperPage() {
             <section id="architecture">
               <h2>3. System Architecture</h2>
               <p>
-                acri decomposes into <strong>corpus</strong> (RAM indexing over MCP servers and Python functions), <strong>compass</strong> (zero-copy BM25 inverted lexical index with query synonym expansion), and <strong>port</strong> (unified adapters for 12 providers &mdash; Gemini, Vertex AI, OpenAI, Anthropic, and Bedrock natively, plus Cloudflare Workers AI, OpenRouter, NVIDIA NIM, Grok, and self-hosted vLLM/Ollama/LM Studio through one shared OpenAI-compatible adapter). The accuracy evaluation in &sect;4 runs across five models and three vendors, one run each (&sect;5).
+                acri decomposes into <strong>corpus</strong> (RAM indexing over MCP servers and Python functions), <strong>compass</strong> (zero-copy BM25 inverted lexical index with query synonym expansion), and <strong>port</strong> (unified adapters for 12 providers &mdash; Gemini, Vertex AI, OpenAI, Anthropic, and Bedrock natively, plus Cloudflare Workers AI, OpenRouter, NVIDIA NIM, Grok, and self-hosted vLLM/Ollama/LM Studio through one shared OpenAI-compatible adapter). The accuracy evaluation in &sect;4 runs across seven models and five vendors, one run each (&sect;5).
               </p>
 
               {/* FIGURE 1: CAPABILITY PIPELINE */}
@@ -295,7 +295,7 @@ export default function AcriPaperPage() {
             <section id="evaluation">
               <h2>4. Empirical Evaluation &amp; Experimental Receipts</h2>
               <p>
-                Evaluated against a synthetic corpus of 100 enterprise tools across 20 domains, live calls, five models across three vendors (Google, Anthropic, Meta).
+                Evaluated against a synthetic corpus of 100 enterprise tools across 20 domains, live calls, seven models across five vendors (Google, Anthropic, Meta, OpenAI, xAI).
               </p>
 
               {/* FIGURE 2: LIVE ACCURACY GAIN */}
@@ -312,11 +312,11 @@ export default function AcriPaperPage() {
                   </svg>
                 </div>
                 <div className="g-figure-caption">
-                  <b>Figure 2: Live Tool Selection Accuracy on Gemini 2.5 Flash</b> (one of five models tested). Tested on 50 gold queries with zero resolver misses.
+                  <b>Figure 2: Live Tool Selection Accuracy on Gemini 2.5 Flash</b> (one of seven models tested). Tested on 50 gold queries with zero resolver misses.
                 </div>
               </div>
 
-              {/* FIGURE 2B: ALL FIVE MODELS -- same table styling as the Claims Matrix above,
+              {/* FIGURE 2B: ALL SEVEN MODELS -- same table styling as the Claims Matrix above,
                   not a second hand-drawn chart, so it can't drift from that proven layout */}
               <div style={{ overflowX: 'auto', margin: '24px 0', border: '1px solid #DADCE0', borderRadius: '8px' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13.5px', textAlign: 'left' }}>
@@ -330,10 +330,12 @@ export default function AcriPaperPage() {
                     </tr>
                   </thead>
                   <tbody>
+                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>gpt-5-mini</td><td style={{ padding: '10px 14px' }}>OpenAI (Azure)</td><td style={{ padding: '10px 14px' }}>70%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>80%</td><td style={{ padding: '10px 14px' }}>+10</td></tr>
                     <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>gemini-2.5-flash</td><td style={{ padding: '10px 14px' }}>Google</td><td style={{ padding: '10px 14px' }}>84%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>92%</td><td style={{ padding: '10px 14px' }}>+8</td></tr>
-                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>llama-3.1-70b</td><td style={{ padding: '10px 14px' }}>Meta (Cloudflare)</td><td style={{ padding: '10px 14px' }}>96%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>100%</td><td style={{ padding: '10px 14px' }}>+4</td></tr>
-                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>llama-3.3-70b</td><td style={{ padding: '10px 14px' }}>Meta (Cloudflare)</td><td style={{ padding: '10px 14px' }}>98%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>100%</td><td style={{ padding: '10px 14px' }}>+2</td></tr>
                     <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>claude-sonnet-4-6</td><td style={{ padding: '10px 14px' }}>Anthropic (Vertex)</td><td style={{ padding: '10px 14px' }}>92%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>96%</td><td style={{ padding: '10px 14px' }}>+4</td></tr>
+                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>llama-3.1-70b</td><td style={{ padding: '10px 14px' }}>Meta (Cloudflare)</td><td style={{ padding: '10px 14px' }}>96%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>100%</td><td style={{ padding: '10px 14px' }}>+4</td></tr>
+                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>grok-4-6</td><td style={{ padding: '10px 14px' }}>xAI (Azure)</td><td style={{ padding: '10px 14px' }}>96%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>98%</td><td style={{ padding: '10px 14px' }}>+2</td></tr>
+                    <tr style={{ borderBottom: '1px solid #E8EAED' }}><td style={{ padding: '10px 14px' }}>llama-3.3-70b</td><td style={{ padding: '10px 14px' }}>Meta (Cloudflare)</td><td style={{ padding: '10px 14px' }}>98%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>100%</td><td style={{ padding: '10px 14px' }}>+2</td></tr>
                     <tr><td style={{ padding: '10px 14px' }}>claude-sonnet-5</td><td style={{ padding: '10px 14px' }}>Anthropic (Vertex)</td><td style={{ padding: '10px 14px' }}>90%</td><td style={{ padding: '10px 14px', color: '#137333', fontWeight: 600 }}>92%</td><td style={{ padding: '10px 14px' }}>+2</td></tr>
                   </tbody>
                 </table>
@@ -393,8 +395,8 @@ export default function AcriPaperPage() {
             <section id="limitations">
               <h2>5. Limitations &amp; Future Work</h2>
               <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '15px', color: '#3C4043' }}>
-                <li><strong>Sample Size:</strong> 50 gold queries is small for a headline claim; no bootstrap confidence interval or paired significance test has been computed on any of the five models. Highest-priority gap.</li>
-                <li><strong>Model Coverage:</strong> Five models across three vendors, one run each &mdash; stronger than one model, but breadth of vendors is not breadth of runs; no result has a computed confidence interval.</li>
+                <li><strong>Sample Size:</strong> 50 gold queries is small for a headline claim; no bootstrap confidence interval or paired significance test has been computed on any of the seven models. Highest-priority gap.</li>
+                <li><strong>Model Coverage:</strong> Seven models across five vendors, one run each &mdash; stronger than a smaller set, but breadth of vendors is not breadth of runs; no result has a computed confidence interval, and two models show an unexplained latency inversion.</li>
                 <li><strong>Dense Baseline:</strong> BM25 vs dense embeddings comparison remains an open benchmark.</li>
                 <li><strong>Synthetic Catalog:</strong> Synthetic enterprise tools were used rather than live production MCP servers.</li>
                 <li><strong>Re-resolution Triggers:</strong> The resolve-once policy forbids per-turn re-resolution but doesn&rsquo;t yet define what should trigger a fresh lookup mid-task.</li>
@@ -419,6 +421,8 @@ export default function AcriPaperPage() {
                 <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy --provider gemini <span style={{ color: '#80868B' }}># §4.3</span></div>
                 <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy --provider cloudflare --model @cf/meta/llama-3.1-70b-instruct</div>
                 <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy --provider vertex-claude --model claude-sonnet-5</div>
+                <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy --provider azure-grok --model grok-4-6</div>
+                <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.accuracy --provider azure-openai --model gpt-5-mini</div>
                 <div><span style={{ color: '#1A73E8' }}>$</span> python -m assay.diagnose <span style={{ color: '#80868B' }}># per-query resolver_miss detail</span></div>
               </div>
             </section>
