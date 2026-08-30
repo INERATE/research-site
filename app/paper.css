@@ -107,9 +107,14 @@ body {
   transition: color 0.15s;
 }
 
-.g-nav-link:hover, .g-nav-link.active,
-.google-nav-link:hover, .google-nav-link.active {
+.g-nav-link:hover, .google-nav-link:hover {
+  color: #202124;
+}
+
+.g-nav-link.active, .google-nav-link.active {
   color: var(--google-blue);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--google-blue);
 }
 
 .g-search-btn, .google-search-btn {
