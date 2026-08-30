@@ -15,6 +15,10 @@ export function PdfViewerModal({
   pdfUrl = '/assets/acri_capability_resolver_paper.pdf',
   title = 'acri: A Client-Side Capability Resolver for Tool-Augmented Language Models (Research Paper PDF)'
 }: PdfModalProps) {
+  // Full `title` stays on the iframe as its accessible name (not visually rendered,
+  // so length doesn't matter there) -- the header shows a short label instead, since
+  // the full academic title in a 32px bar is what overflowed the modal on mobile.
+  const headerLabel = 'acri Research Paper';
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -44,7 +48,7 @@ export function PdfViewerModal({
               <line x1="16" y1="17" x2="8" y2="17"/>
               <polyline points="10 9 9 9 8 9"/>
             </svg>
-            <span>{title}</span>
+            <span>{headerLabel}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

@@ -705,15 +705,37 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 14px 20px;
   background: #F8F9FA;
   border-bottom: 1px solid var(--border-light);
 }
 
 .modal-title, .pdf-modal-title {
+  display: flex;
+  align-items: center;
+  min-width: 0; /* lets the flex child actually shrink below its content width */
+  overflow: hidden;
   font-size: 14px;
   font-weight: 600;
   color: #202124;
+}
+
+.modal-title span, .pdf-modal-title span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.modal-bar > div:last-child, .pdf-modal-bar > div:last-child {
+  flex-shrink: 0; /* the download/close buttons never lose space to the title */
+}
+
+@media (max-width: 480px) {
+  .modal-backdrop, .pdf-modal-backdrop { padding: 0; }
+  .modal-window, .pdf-modal-window { max-width: 100%; height: 100%; border-radius: 0; }
+  .modal-bar, .pdf-modal-bar { padding: 10px 12px; }
+  .modal-title, .pdf-modal-title { font-size: 13px; }
 }
 
 .pdf-iframe, .pdf-frame {
