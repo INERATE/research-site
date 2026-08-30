@@ -11,7 +11,7 @@ export default function ResearchHubPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'microkernels' | 'caching' | 'systems'>('all');
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh', color: '#202124' }}>
+    <div style={{ background: '#FAFAFA', minHeight: '100vh', color: '#202124' }}>
       <Header />
 
       {/* HUB HERO */}
