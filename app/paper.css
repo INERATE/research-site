@@ -84,13 +84,22 @@ body {
   padding: 9px 22px;
   border: 1px solid transparent;
   border-radius: 9999px;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .g-header.scrolled .g-nav-inner {
+  max-width: 880px;
   background: #FFFFFF;
   border-color: rgba(218, 220, 224, 0.9);
   box-shadow: 0 10px 30px -12px rgba(20, 17, 14, 0.25);
+}
+
+.g-header.scrolled .g-nav-links {
+  gap: 22px;
+}
+
+.g-header.scrolled .g-brand span:last-child {
+  display: none;
 }
 
 .g-brand, .google-brand {
