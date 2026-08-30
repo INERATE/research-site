@@ -65,7 +65,7 @@ export default function ResearchHubPage() {
       </section>
 
       {/* PAPERS INDEX */}
-      <section style={{ padding: '50px 0 80px' }}>
+      <section id="publications" style={{ padding: '50px 0 80px', scrollMarginTop: '80px' }}>
         <div className="research-container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#202124', letterSpacing: '-0.02em' }}>

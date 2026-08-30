@@ -1,8 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
+  const pathname = usePathname();
+  const onHome = pathname === '/';
+
   return (
     <header className="g-header">
       <div className="research-container g-nav-inner">
@@ -19,8 +23,8 @@ export function Header() {
         </Link>
 
         <nav className="g-nav-links">
-          <Link href="/" className="g-nav-link">Research</Link>
-          <Link href="/acri" className="g-nav-link active">Publications</Link>
+          <Link href="/" className={`g-nav-link${onHome ? ' active' : ''}`}>Research</Link>
+          <Link href="/#publications" className={`g-nav-link${onHome ? '' : ' active'}`}>Publications</Link>
           <a href="https://forge.inerate.com" target="_blank" rel="noopener noreferrer" className="g-nav-link">Forge</a>
           <a href="https://docs.inerate.com" target="_blank" rel="noopener noreferrer" className="g-nav-link">Docs</a>
           <a href="https://github.com/INERATE/acri" target="_blank" rel="noopener noreferrer" className="g-nav-link">GitHub</a>
