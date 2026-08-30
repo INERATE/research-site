@@ -1,14 +1,30 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export function Header() {
   const pathname = usePathname();
   const onHome = pathname === '/';
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let prev = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      if (y > 120 && y > prev) setHidden(true);
+      else if (y < prev) setHidden(false);
+      prev = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="g-header">
+    <header className={`g-header${scrolled ? ' scrolled' : ''}${hidden ? ' nav-hidden' : ''}`}>
       <div className="research-container g-nav-inner">
         <Link href="/" className="g-brand">
           <div style={{ display: 'flex', alignItems: 'center' }}>

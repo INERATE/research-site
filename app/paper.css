@@ -64,14 +64,16 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(218, 220, 224, 0.8);
+  background: transparent;
   height: 64px;
+  padding-top: 8px;
   display: flex;
   align-items: center;
-  transition: all 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.g-header.nav-hidden {
+  transform: translateY(-130%);
 }
 
 .g-nav-inner, .google-nav-inner {
@@ -79,7 +81,19 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  padding: 8px 24px;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, max-width 0.3s ease;
+}
+
+.g-header.scrolled .g-nav-inner {
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: var(--border-main);
+  box-shadow: 0 8px 30px -8px rgba(20, 17, 14, 0.18);
 }
 
 .g-brand, .google-brand {
