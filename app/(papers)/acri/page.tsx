@@ -231,7 +231,7 @@ export default function AcriPaperPage() {
             <section id="architecture">
               <h2>3. System Architecture</h2>
               <p>
-                acri decomposes into <strong>corpus</strong> (RAM indexing over MCP servers and Python functions), <strong>compass</strong> (zero-copy BM25 inverted lexical index with query synonym expansion), and <strong>port</strong> (unified provider adapters for Gemini, OpenAI, and Ollama).
+                acri decomposes into <strong>corpus</strong> (RAM indexing over MCP servers and Python functions), <strong>compass</strong> (zero-copy BM25 inverted lexical index with query synonym expansion), and <strong>port</strong> (unified adapters for 12 providers &mdash; Gemini, Vertex AI, OpenAI, Anthropic, and Bedrock natively, plus Cloudflare Workers AI, OpenRouter, NVIDIA NIM, Grok, and self-hosted vLLM/Ollama/LM Studio through one shared OpenAI-compatible adapter). The accuracy evaluation in &sect;4 uses <code>gemini-2.5-flash</code> only (&sect;5).
               </p>
 
               {/* FIGURE 1: CAPABILITY PIPELINE */}
